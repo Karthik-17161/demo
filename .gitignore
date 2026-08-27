@@ -1,0 +1,10 @@
+# JavaScript dependencies and generated frontend assets are recreated by npm.
+apps/web/node_modules/
+apps/web/dist/
+
+# Python caches and local test/build state.
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+state/
