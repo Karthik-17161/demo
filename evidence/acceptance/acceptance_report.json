@@ -1,0 +1,300 @@
+{
+  "schema": "klcap-acceptance-v1",
+  "created_utc": "2026-08-27T05:08:17.714813+00:00",
+  "baseline_run": "o2-baseline-1787807290-a26cefe0",
+  "candidate_run": "o3c-lora-hn-fair-1787807290-0c7a851f",
+  "overall": "REVISE",
+  "failed_gates": [
+    "quality",
+    "fairness"
+  ],
+  "gates": [
+    {
+      "gate": "data",
+      "pass": true,
+      "detail": {
+        "valid": true,
+        "problems": [],
+        "manifest_id": "manifest-demo1500-92839f73f2bb",
+        "licences": [
+          "CC-BY-4.0"
+        ],
+        "n_records": 1500,
+        "acceptance_frozen": true,
+        "split_unit": "scene_id",
+        "split_matches_manifest": true,
+        "records_match": true,
+        "leakage_free": true,
+        "leakage_problems": [],
+        "negative_tests": {
+          "unequal_compute_blocked": true,
+          "leakage_detected": true,
+          "abstention_labelled": true,
+          "critical_regression_revise": true,
+          "artifact_mismatch_refused": true,
+          "telemetry_missing_no_claim": true
+        }
+      }
+    },
+    {
+      "gate": "reproducibility",
+      "pass": true,
+      "detail": {
+        "missing": []
+      }
+    },
+    {
+      "gate": "fair_comparison",
+      "pass": true,
+      "detail": {
+        "manifest_baseline": "manifest-demo1500-92839f73f2bb",
+        "manifest_candidate": "manifest-demo1500-92839f73f2bb"
+      }
+    },
+    {
+      "gate": "quality",
+      "pass": false,
+      "detail": {
+        "candidate_recall@1": 0.24561403508771928,
+        "baseline_recall@1": 0.2894736842105263,
+        "delta": -0.04385964912280704,
+        "resource_improvement": -50.75734629212995,
+        "required_resource_improvement": 0.2
+      }
+    },
+    {
+      "gate": "fairness",
+      "pass": false,
+      "detail": {
+        "candidate_fairness_verdict": {
+          "fairness_ok": false,
+          "max_observed_gap": 0.4782608695652174,
+          "threshold": 0.25,
+          "flagged_slices": [
+            {
+              "slice": "subgroup:lighting-low",
+              "reason": "near-zero recall 0.000"
+            }
+          ]
+        },
+        "critical_regressions": [
+          {
+            "slice": "by_subgroup:common-object",
+            "baseline_recall@1": 0.2894736842105263,
+            "candidate_recall@1": 0.21052631578947367,
+            "delta": -0.07894736842105265,
+            "critical": true
+          },
+          {
+            "slice": "by_subgroup:lighting-low",
+            "baseline_recall@1": 0.09090909090909091,
+            "candidate_recall@1": 0.0,
+            "delta": -0.09090909090909091,
+            "critical": true
+          },
+          {
+            "slice": "by_subgroup:rare-object",
+            "baseline_recall@1": 0.20512820512820512,
+            "candidate_recall@1": 0.1794871794871795,
+            "delta": -0.025641025641025633,
+            "critical": true
+          },
+          {
+            "slice": "by_subgroup:region-na",
+            "baseline_recall@1": 0.375,
+            "candidate_recall@1": 0.25,
+            "delta": -0.125,
+            "critical": true
+          }
+        ]
+      }
+    },
+    {
+      "gate": "operations",
+      "pass": true,
+      "detail": {}
+    },
+    {
+      "gate": "assurance",
+      "pass": true,
+      "detail": {
+        "demonstrated": [
+          "abstention_labelled",
+          "artifact_mismatch_refused",
+          "critical_regression_revise",
+          "leakage_detected",
+          "telemetry_missing_no_claim",
+          "unequal_compute_blocked"
+        ],
+        "expected": [
+          "abstention_labelled",
+          "artifact_mismatch_refused",
+          "critical_regression_revise",
+          "leakage_detected",
+          "telemetry_missing_no_claim",
+          "unequal_compute_blocked"
+        ]
+      }
+    }
+  ],
+  "comparison": {
+    "schema": "klcap-comparison-v1",
+    "baseline_run": "o2-baseline-1787807290-a26cefe0",
+    "candidate_run": "o3c-lora-hn-fair-1787807290-0c7a851f",
+    "gate": "PASS",
+    "metrics_delta": {
+      "recall@1": {
+        "baseline": 0.2894736842105263,
+        "candidate": 0.24561403508771928,
+        "delta": -0.04385964912280704
+      },
+      "recall@5": {
+        "baseline": 0.8640350877192983,
+        "candidate": 0.7894736842105263,
+        "delta": -0.07456140350877194
+      },
+      "recall@10": {
+        "baseline": 0.9517543859649122,
+        "candidate": 0.9254385964912281,
+        "delta": -0.02631578947368418
+      },
+      "mrr": {
+        "baseline": 0.5156121387058225,
+        "candidate": 0.46465266000015804,
+        "delta": -0.05095947870566442
+      },
+      "probe_accuracy": {
+        "baseline": 0.9868421052631579,
+        "candidate": 0.9824561403508771,
+        "delta": -0.004385964912280715
+      }
+    },
+    "resource": {
+      "baseline_energy_joules": 3.6912193298339844,
+      "candidate_energy_joules": 191.0477170944214,
+      "baseline_flops_train": 0.0,
+      "candidate_flops_train": 593856000.0,
+      "resource_improvement_fraction": -50.75734629212995
+    },
+    "critical_regression_check": {
+      "overall_delta_recall@1": -0.04385964912280704,
+      "critical_regressions": [
+        {
+          "slice": "by_subgroup:common-object",
+          "baseline_recall@1": 0.2894736842105263,
+          "candidate_recall@1": 0.21052631578947367,
+          "delta": -0.07894736842105265,
+          "critical": true
+        },
+        {
+          "slice": "by_subgroup:lighting-low",
+          "baseline_recall@1": 0.09090909090909091,
+          "candidate_recall@1": 0.0,
+          "delta": -0.09090909090909091,
+          "critical": true
+        },
+        {
+          "slice": "by_subgroup:rare-object",
+          "baseline_recall@1": 0.20512820512820512,
+          "candidate_recall@1": 0.1794871794871795,
+          "delta": -0.025641025641025633,
+          "critical": true
+        },
+        {
+          "slice": "by_subgroup:region-na",
+          "baseline_recall@1": 0.375,
+          "candidate_recall@1": 0.25,
+          "delta": -0.125,
+          "critical": true
+        }
+      ],
+      "verdict": "REVISE"
+    }
+  },
+  "data_report": {
+    "valid": true,
+    "problems": [],
+    "manifest_id": "manifest-demo1500-92839f73f2bb",
+    "licences": [
+      "CC-BY-4.0"
+    ],
+    "n_records": 1500,
+    "acceptance_frozen": true,
+    "split_unit": "scene_id",
+    "split_matches_manifest": true,
+    "records_match": true,
+    "leakage_free": true,
+    "leakage_problems": [],
+    "negative_tests": {
+      "unequal_compute_blocked": true,
+      "leakage_detected": true,
+      "abstention_labelled": true,
+      "critical_regression_revise": true,
+      "artifact_mismatch_refused": true,
+      "telemetry_missing_no_claim": true
+    }
+  },
+  "negative_tests": {
+    "schema": "klcap-negative-tests-v1",
+    "created_utc": "2026-08-27T05:08:17.713811+00:00",
+    "all_pass": true,
+    "tests": {
+      "unequal_compute_blocked": {
+        "pass": true,
+        "detail": "unequal data: manifest manifest-x != manifest-CHANGED"
+      },
+      "leakage_detected": {
+        "pass": true,
+        "detail": [
+          "scene outdoor-scene-0001 leaks across splits ['acceptance', 'train']"
+        ]
+      },
+      "abstention_labelled": {
+        "pass": true,
+        "detail": {
+          "out_of_domain": {
+            "status": "ABSTAIN",
+            "reasons": [
+              "unapproved domain 'underwater'",
+              "missing required subgroup metadata"
+            ],
+            "results": [],
+            "claim": null
+          },
+          "missing_metadata": {
+            "status": "ABSTAIN",
+            "reasons": [
+              "missing required subgroup metadata"
+            ],
+            "results": [],
+            "claim": null
+          }
+        }
+      },
+      "critical_regression_revise": {
+        "pass": true,
+        "detail": {
+          "overall_delta_recall@1": 0.06000000000000005,
+          "critical_regressions": [
+            {
+              "slice": "by_subgroup:rare-object",
+              "baseline_recall@1": 0.4,
+              "candidate_recall@1": 0.3,
+              "delta": -0.10000000000000003,
+              "critical": true
+            }
+          ],
+          "verdict": "REVISE"
+        }
+      },
+      "artifact_mismatch_refused": {
+        "pass": true,
+        "detail": "artifact mismatch: LoRA state hash does not match saved hash"
+      },
+      "telemetry_missing_no_claim": {
+        "pass": true,
+        "detail": "telemetry unavailable/incomplete: resource claims disabled"
+      }
+    }
+  }
+}

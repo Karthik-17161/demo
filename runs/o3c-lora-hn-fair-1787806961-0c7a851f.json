@@ -1,0 +1,2781 @@
+{
+  "schema": "klcap-run-v1",
+  "lab_version": "1.0.0",
+  "evaluator_version": "eval-1.0.0",
+  "run_id": "o3c-lora-hn-fair-1787806961-0c7a851f",
+  "experiment_name": "o3c-lora-hn-fair",
+  "role": "candidate",
+  "created_utc": "2026-08-27T05:02:48.440546+00:00",
+  "config": {
+    "experiment": {
+      "name": "o3c-lora-hn-fair",
+      "role": "candidate",
+      "manifest_dir": "evidence/demo",
+      "splits_path": "evidence/splits/splits.json"
+    },
+    "seed": 167,
+    "encoder": {
+      "prefer_real": false,
+      "openclip_model": "ViT-B-32",
+      "openclip_pretrained": "laion2b_s34b_b79k",
+      "seed": 167
+    },
+    "lora": {
+      "enabled": true,
+      "rank": 8,
+      "alpha": 8.0,
+      "gated": true,
+      "rounds": 3,
+      "epochs": 30,
+      "lr": 0.05,
+      "max_trainable_params": 100000
+    },
+    "hard_negatives": {
+      "enabled": true,
+      "max_pairs": 256
+    },
+    "fairness": {
+      "enabled": true,
+      "max_gap": 0.25
+    }
+  },
+  "config_hash": "0c7a851f78d88c17150d49aa7852424fc9f62a820357e40dc692887b198d2d71",
+  "seed": 167,
+  "git_commit": "no-git",
+  "python_version": "3.11.9",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "encoder": {
+    "text": "hashing-text-v1",
+    "image": "hashing-image-v1",
+    "dim": 128
+  },
+  "data": {
+    "manifest_id": "manifest-demo1500-92839f73f2bb",
+    "manifest_sha256": "49af2f639bc215bdac76c575ee622d028ede222e47999a7817de13af07536260",
+    "split_id": "splits-3f7231e076ef",
+    "n_train": 1042,
+    "n_validation": 230,
+    "n_acceptance": 228,
+    "licences": [
+      "CC-BY-4.0"
+    ]
+  },
+  "metrics": {
+    "recall@1": 0.24561403508771928,
+    "recall@5": 0.7894736842105263,
+    "recall@10": 0.9254385964912281,
+    "mrr": 0.46465266000015804,
+    "median_rank": 2.0,
+    "clean_recall@1": 0.24561403508771928,
+    "typo_recall@1": 0.18859649122807018,
+    "word_dropout_recall@1": 0.24561403508771928,
+    "robustness_drop": 0.057017543859649106,
+    "probe_accuracy": 0.9824561403508771,
+    "probe_per_class": {
+      "0": 0.9611650485436893,
+      "1": 1.0
+    }
+  },
+  "slices": {
+    "overall": {
+      "n": 228,
+      "recall@1": 0.24561403508771928,
+      "recall@5": 0.7894736842105263
+    },
+    "by_subgroup": {
+      "common-object": {
+        "n": 38,
+        "recall@1": 0.21052631578947367,
+        "recall@5": 0.7368421052631579
+      },
+      "lighting-low": {
+        "n": 11,
+        "recall@1": 0.0,
+        "recall@5": 0.6363636363636364
+      },
+      "lighting-normal": {
+        "n": 65,
+        "recall@1": 0.23076923076923078,
+        "recall@5": 0.8461538461538461
+      },
+      "rare-object": {
+        "n": 39,
+        "recall@1": 0.1794871794871795,
+        "recall@5": 0.7435897435897436
+      },
+      "region-asia": {
+        "n": 20,
+        "recall@1": 0.35,
+        "recall@5": 0.75
+      },
+      "region-eu": {
+        "n": 23,
+        "recall@1": 0.4782608695652174,
+        "recall@5": 0.9130434782608695
+      },
+      "region-na": {
+        "n": 32,
+        "recall@1": 0.25,
+        "recall@5": 0.78125
+      }
+    },
+    "by_domain": {
+      "indoor": {
+        "n": 103,
+        "recall@1": 0.2621359223300971,
+        "recall@5": 0.7475728155339806
+      },
+      "outdoor": {
+        "n": 125,
+        "recall@1": 0.232,
+        "recall@5": 0.824
+      }
+    },
+    "disparity_subgroup": {
+      "max_gap_recall@1": 0.4782608695652174,
+      "worst_slice_recall@1": 0.0,
+      "best_slice_recall@1": 0.4782608695652174
+    },
+    "disparity_domain": {
+      "max_gap_recall@1": 0.03013592233009707,
+      "worst_slice_recall@1": 0.232,
+      "best_slice_recall@1": 0.2621359223300971
+    }
+  },
+  "fairness_verdict": {
+    "fairness_ok": false,
+    "max_observed_gap": 0.4782608695652174,
+    "threshold": 0.25,
+    "flagged_slices": [
+      {
+        "slice": "subgroup:lighting-low",
+        "reason": "near-zero recall 0.000"
+      }
+    ]
+  },
+  "telemetry": {
+    "run_id": "o3c-lora-hn-fair-1787806961-0c7a851f",
+    "started_utc": 1787806961.6074638,
+    "ended_utc": 1787806968.422545,
+    "elapsed_s": 6.8150811195373535,
+    "flops_train": 593856000.0,
+    "flops_eval": 800256.0,
+    "energy_joules": 190.8222713470459,
+    "energy_source": "tdp-estimate",
+    "gpu_name": null,
+    "cpu_model": "AMD64 Family 25 Model 80 Stepping 0, AuthenticAMD",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "complete": true,
+    "notes": [
+      "no NVML GPU; energy estimated from 28 W CPU TDP model"
+    ],
+    "energy_per_query_joules": 0.8369397866098505
+  },
+  "negative_log_summary": {
+    "n_negatives_used": 767,
+    "schedule": [
+      "easy",
+      "medium",
+      "hard"
+    ],
+    "log": [
+      {
+        "query": "demo-000327",
+        "negative": "demo-000557",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000899",
+        "negative": "demo-000320",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000605",
+        "negative": "demo-000926",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001151",
+        "negative": "demo-000679",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001047",
+        "negative": "demo-001415",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000476",
+        "negative": "demo-000909",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001376",
+        "negative": "demo-001381",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001131",
+        "negative": "demo-001108",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001181",
+        "negative": "demo-000190",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001468",
+        "negative": "demo-000972",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001387",
+        "negative": "demo-000907",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001195",
+        "negative": "demo-000556",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001138",
+        "negative": "demo-000856",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000469",
+        "negative": "demo-000197",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001220",
+        "negative": "demo-001429",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001078",
+        "negative": "demo-000143",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000966",
+        "negative": "demo-000322",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001275",
+        "negative": "demo-000055",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000923",
+        "negative": "demo-000813",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000271",
+        "negative": "demo-000397",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000110",
+        "negative": "demo-001264",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000981",
+        "negative": "demo-000867",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001090",
+        "negative": "demo-000797",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000811",
+        "negative": "demo-000400",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001491",
+        "negative": "demo-000461",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001160",
+        "negative": "demo-001347",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000571",
+        "negative": "demo-000100",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001129",
+        "negative": "demo-001296",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001222",
+        "negative": "demo-000651",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000759",
+        "negative": "demo-000042",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000051",
+        "negative": "demo-001131",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001192",
+        "negative": "demo-001349",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001402",
+        "negative": "demo-001126",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001443",
+        "negative": "demo-000282",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000742",
+        "negative": "demo-001400",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001010",
+        "negative": "demo-001439",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000396",
+        "negative": "demo-001416",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000768",
+        "negative": "demo-000605",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000619",
+        "negative": "demo-001177",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000505",
+        "negative": "demo-001242",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001280",
+        "negative": "demo-001028",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000128",
+        "negative": "demo-000157",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000324",
+        "negative": "demo-000936",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000285",
+        "negative": "demo-001072",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000841",
+        "negative": "demo-000168",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000660",
+        "negative": "demo-000612",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001110",
+        "negative": "demo-000353",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000761",
+        "negative": "demo-000704",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001024",
+        "negative": "demo-001491",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000140",
+        "negative": "demo-000658",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000173",
+        "negative": "demo-000011",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000925",
+        "negative": "demo-000987",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000270",
+        "negative": "demo-001429",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000891",
+        "negative": "demo-000720",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001407",
+        "negative": "demo-000315",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001370",
+        "negative": "demo-000275",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000678",
+        "negative": "demo-000049",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001420",
+        "negative": "demo-000897",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001424",
+        "negative": "demo-000670",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000023",
+        "negative": "demo-000158",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000883",
+        "negative": "demo-001451",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000812",
+        "negative": "demo-001203",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000475",
+        "negative": "demo-000326",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000731",
+        "negative": "demo-001466",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000548",
+        "negative": "demo-000366",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000768",
+        "negative": "demo-000174",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000329",
+        "negative": "demo-000863",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000873",
+        "negative": "demo-000976",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000203",
+        "negative": "demo-000880",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001109",
+        "negative": "demo-000035",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000285",
+        "negative": "demo-000955",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001334",
+        "negative": "demo-001134",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001462",
+        "negative": "demo-000309",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000623",
+        "negative": "demo-000847",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000525",
+        "negative": "demo-001485",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000955",
+        "negative": "demo-001105",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000044",
+        "negative": "demo-001443",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000190",
+        "negative": "demo-000878",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000272",
+        "negative": "demo-000419",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000065",
+        "negative": "demo-000805",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000198",
+        "negative": "demo-001113",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000171",
+        "negative": "demo-000367",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000101",
+        "negative": "demo-000063",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000001",
+        "negative": "demo-000741",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000842",
+        "negative": "demo-000082",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000539",
+        "negative": "demo-000921",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000205",
+        "negative": "demo-000992",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000785",
+        "negative": "demo-001026",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000815",
+        "negative": "demo-000830",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000018",
+        "negative": "demo-000944",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000648",
+        "negative": "demo-001478",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000351",
+        "negative": "demo-001273",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000035",
+        "negative": "demo-001399",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000025",
+        "negative": "demo-001152",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000213",
+        "negative": "demo-000451",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000649",
+        "negative": "demo-001256",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000098",
+        "negative": "demo-000235",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001004",
+        "negative": "demo-001437",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000165",
+        "negative": "demo-000010",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001203",
+        "negative": "demo-001216",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001405",
+        "negative": "demo-000198",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001035",
+        "negative": "demo-001286",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000027",
+        "negative": "demo-000830",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000349",
+        "negative": "demo-000475",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000320",
+        "negative": "demo-000187",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000630",
+        "negative": "demo-000475",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000544",
+        "negative": "demo-000487",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001113",
+        "negative": "demo-000704",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001347",
+        "negative": "demo-000916",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001049",
+        "negative": "demo-000085",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001367",
+        "negative": "demo-001240",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001374",
+        "negative": "demo-000315",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001125",
+        "negative": "demo-000924",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001102",
+        "negative": "demo-000523",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001108",
+        "negative": "demo-000685",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000105",
+        "negative": "demo-001101",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000885",
+        "negative": "demo-000651",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000173",
+        "negative": "demo-001372",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001073",
+        "negative": "demo-000508",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000829",
+        "negative": "demo-001479",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000622",
+        "negative": "demo-000920",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001087",
+        "negative": "demo-000136",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000302",
+        "negative": "demo-001044",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000854",
+        "negative": "demo-000461",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001371",
+        "negative": "demo-000878",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000912",
+        "negative": "demo-001400",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000019",
+        "negative": "demo-001334",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000689",
+        "negative": "demo-000146",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000465",
+        "negative": "demo-000312",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000042",
+        "negative": "demo-000657",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001192",
+        "negative": "demo-000363",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000688",
+        "negative": "demo-000353",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001429",
+        "negative": "demo-000189",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001027",
+        "negative": "demo-001414",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000313",
+        "negative": "demo-000376",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000854",
+        "negative": "demo-000520",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000826",
+        "negative": "demo-000423",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001134",
+        "negative": "demo-001331",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000415",
+        "negative": "demo-000321",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000928",
+        "negative": "demo-001426",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001024",
+        "negative": "demo-000695",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000793",
+        "negative": "demo-001064",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000335",
+        "negative": "demo-001299",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001480",
+        "negative": "demo-001374",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000987",
+        "negative": "demo-000391",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000743",
+        "negative": "demo-001460",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000394",
+        "negative": "demo-001153",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001203",
+        "negative": "demo-000985",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001313",
+        "negative": "demo-000796",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000937",
+        "negative": "demo-001176",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001407",
+        "negative": "demo-001184",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000405",
+        "negative": "demo-001470",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000582",
+        "negative": "demo-001060",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001467",
+        "negative": "demo-001020",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001380",
+        "negative": "demo-000960",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000392",
+        "negative": "demo-001481",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000590",
+        "negative": "demo-000912",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000346",
+        "negative": "demo-000524",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000830",
+        "negative": "demo-000898",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000483",
+        "negative": "demo-000902",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000863",
+        "negative": "demo-000967",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000351",
+        "negative": "demo-001177",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000011",
+        "negative": "demo-000797",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001314",
+        "negative": "demo-001465",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001330",
+        "negative": "demo-000292",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000194",
+        "negative": "demo-001162",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001483",
+        "negative": "demo-001161",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001136",
+        "negative": "demo-000042",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000158",
+        "negative": "demo-001459",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000533",
+        "negative": "demo-000832",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000041",
+        "negative": "demo-000362",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000686",
+        "negative": "demo-001023",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000429",
+        "negative": "demo-000492",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000173",
+        "negative": "demo-000890",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000988",
+        "negative": "demo-000207",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000023",
+        "negative": "demo-000928",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001481",
+        "negative": "demo-001427",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000160",
+        "negative": "demo-000812",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000516",
+        "negative": "demo-000982",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001500",
+        "negative": "demo-000114",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001274",
+        "negative": "demo-001400",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001169",
+        "negative": "demo-000789",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001491",
+        "negative": "demo-000831",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001057",
+        "negative": "demo-000680",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001434",
+        "negative": "demo-000482",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000394",
+        "negative": "demo-000508",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001448",
+        "negative": "demo-001215",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001002",
+        "negative": "demo-001173",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000557",
+        "negative": "demo-000806",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000397",
+        "negative": "demo-000733",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000413",
+        "negative": "demo-000375",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000875",
+        "negative": "demo-000366",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000769",
+        "negative": "demo-000124",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000729",
+        "negative": "demo-000253",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000551",
+        "negative": "demo-001477",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000107",
+        "negative": "demo-001480",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000229",
+        "negative": "demo-000010",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000441",
+        "negative": "demo-001221",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001101",
+        "negative": "demo-000600",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000204",
+        "negative": "demo-000475",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000052",
+        "negative": "demo-001372",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000839",
+        "negative": "demo-000368",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001384",
+        "negative": "demo-001467",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000272",
+        "negative": "demo-000372",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000611",
+        "negative": "demo-000420",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000312",
+        "negative": "demo-000351",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001366",
+        "negative": "demo-000788",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001204",
+        "negative": "demo-000987",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000855",
+        "negative": "demo-001054",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001072",
+        "negative": "demo-000654",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000430",
+        "negative": "demo-000442",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000979",
+        "negative": "demo-001036",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000280",
+        "negative": "demo-000014",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000985",
+        "negative": "demo-000401",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000621",
+        "negative": "demo-000391",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001192",
+        "negative": "demo-000730",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000313",
+        "negative": "demo-000171",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000769",
+        "negative": "demo-001268",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000020",
+        "negative": "demo-001407",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001336",
+        "negative": "demo-000869",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000013",
+        "negative": "demo-001420",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000212",
+        "negative": "demo-000743",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000568",
+        "negative": "demo-000252",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000218",
+        "negative": "demo-000628",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001373",
+        "negative": "demo-000581",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000591",
+        "negative": "demo-001133",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000548",
+        "negative": "demo-001461",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000104",
+        "negative": "demo-001286",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000525",
+        "negative": "demo-000961",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000872",
+        "negative": "demo-001287",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001474",
+        "negative": "demo-000305",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000342",
+        "negative": "demo-001203",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000648",
+        "negative": "demo-000742",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001420",
+        "negative": "demo-000573",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000287",
+        "negative": "demo-000896",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000577",
+        "negative": "demo-001490",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000466",
+        "negative": "demo-001100",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001310",
+        "negative": "demo-000166",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000781",
+        "negative": "demo-000415",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001027",
+        "negative": "demo-000105",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000611",
+        "negative": "demo-000829",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001153",
+        "negative": "demo-001069",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000016",
+        "negative": "demo-001249",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000291",
+        "negative": "demo-000237",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000314",
+        "negative": "demo-001493",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000893",
+        "negative": "demo-001173",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000720",
+        "negative": "demo-000052",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000630",
+        "negative": "demo-001141",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000530",
+        "negative": "demo-001461",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001108",
+        "negative": "demo-000442",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000312",
+        "negative": "demo-000313",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000063",
+        "negative": "demo-000517",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001429",
+        "negative": "demo-001441",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000346",
+        "negative": "demo-000226",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000580",
+        "negative": "demo-000914",
+        "reason": "random"
+      },
+      {
+        "query": "demo-000206",
+        "negative": "demo-000114",
+        "reason": "random"
+      },
+      {
+        "query": "demo-001076",
+        "negative": "demo-000551",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000226",
+        "negative": "demo-000592",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000292",
+        "negative": "demo-000128",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-001214",
+        "negative": "demo-001194",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000986",
+        "negative": "demo-000206",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000492",
+        "negative": "demo-000097",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-001310",
+        "negative": "demo-000648",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-001288",
+        "negative": "demo-001203",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-001452",
+        "negative": "demo-000671",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000612",
+        "negative": "demo-001478",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000281",
+        "negative": "demo-000399",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000310",
+        "negative": "demo-000944",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000945",
+        "negative": "demo-000189",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000271",
+        "negative": "demo-001028",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000283",
+        "negative": "demo-000618",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000630",
+        "negative": "demo-001459",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-001131",
+        "negative": "demo-000773",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000820",
+        "negative": "demo-000664",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-001200",
+        "negative": "demo-000745",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000012",
+        "negative": "demo-000787",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-001217",
+        "negative": "demo-000406",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-001183",
+        "negative": "demo-001176",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000909",
+        "negative": "demo-001072",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-001361",
+        "negative": "demo-000905",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-001129",
+        "negative": "demo-000010",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000040",
+        "negative": "demo-001221",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-001233",
+        "negative": "demo-000246",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000398",
+        "negative": "demo-000419",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-001038",
+        "negative": "demo-000280",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-001079",
+        "negative": "demo-000398",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000904",
+        "negative": "demo-000485",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000310",
+        "negative": "demo-000017",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-001414",
+        "negative": "demo-000397",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000940",
+        "negative": "demo-001010",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000624",
+        "negative": "demo-001462",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000239",
+        "negative": "demo-000828",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000593",
+        "negative": "demo-001399",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000474",
+        "negative": "demo-000957",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000084",
+        "negative": "demo-000814",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-001268",
+        "negative": "demo-000281",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000839",
+        "negative": "demo-000236",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000302",
+        "negative": "demo-001418",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000821",
+        "negative": "demo-000322",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-001052",
+        "negative": "demo-001334",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-001249",
+        "negative": "demo-000841",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000830",
+        "negative": "demo-000106",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000097",
+        "negative": "demo-000902",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000684",
+        "negative": "demo-001011",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000272",
+        "negative": "demo-000531",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000811",
+        "negative": "demo-000240",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000207",
+        "negative": "demo-001125",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000621",
+        "negative": "demo-001111",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000570",
+        "negative": "demo-000134",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000375",
+        "negative": "demo-000442",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-001045",
+        "negative": "demo-000201",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000372",
+        "negative": "demo-000613",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000131",
+        "negative": "demo-000786",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000506",
+        "negative": "demo-001412",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000044",
+        "negative": "demo-001483",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000254",
+        "negative": "demo-000743",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000796",
+        "negative": "demo-001256",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000367",
+        "negative": "demo-001451",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000605",
+        "negative": "demo-001337",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-001157",
+        "negative": "demo-001381",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-001049",
+        "negative": "demo-001192",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000579",
+        "negative": "demo-001157",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000843",
+        "negative": "demo-001159",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000105",
+        "negative": "demo-000981",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000988",
+        "negative": "demo-000841",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000026",
+        "negative": "demo-000366",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000196",
+        "negative": "demo-000878",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-001385",
+        "negative": "demo-001040",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-001266",
+        "negative": "demo-001351",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000097",
+        "negative": "demo-000642",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000969",
+        "negative": "demo-000856",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-001486",
+        "negative": "demo-001232",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-001275",
+        "negative": "demo-001028",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-001369",
+        "negative": "demo-000899",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-001255",
+        "negative": "demo-001004",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000105",
+        "negative": "demo-000848",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-001170",
+        "negative": "demo-000843",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000195",
+        "negative": "demo-000322",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-001315",
+        "negative": "demo-000376",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000506",
+        "negative": "demo-000863",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000936",
+        "negative": "demo-000399",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-001308",
+        "negative": "demo-000898",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000302",
+        "negative": "demo-000211",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000581",
+        "negative": "demo-000549",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000872",
+        "negative": "demo-000358",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-001060",
+        "negative": "demo-000113",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000956",
+        "negative": "demo-000654",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000732",
+        "negative": "demo-001473",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000110",
+        "negative": "demo-000873",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000875",
+        "negative": "demo-000694",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000578",
+        "negative": "demo-000477",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-001470",
+        "negative": "demo-000364",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000679",
+        "negative": "demo-000303",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000135",
+        "negative": "demo-001398",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000742",
+        "negative": "demo-000581",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000213",
+        "negative": "demo-000010",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000669",
+        "negative": "demo-000423",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000669",
+        "negative": "demo-001477",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000102",
+        "negative": "demo-000311",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000975",
+        "negative": "demo-001233",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000552",
+        "negative": "demo-000863",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000292",
+        "negative": "demo-000847",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000744",
+        "negative": "demo-001481",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-001361",
+        "negative": "demo-000989",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-001110",
+        "negative": "demo-000977",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-001102",
+        "negative": "demo-000225",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000855",
+        "negative": "demo-000797",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000429",
+        "negative": "demo-000870",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000986",
+        "negative": "demo-000287",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000746",
+        "negative": "demo-001003",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000644",
+        "negative": "demo-000538",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000628",
+        "negative": "demo-000134",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000895",
+        "negative": "demo-000983",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-001043",
+        "negative": "demo-000683",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000195",
+        "negative": "demo-001184",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000662",
+        "negative": "demo-000317",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000097",
+        "negative": "demo-000968",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-001366",
+        "negative": "demo-000141",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000238",
+        "negative": "demo-000220",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000533",
+        "negative": "demo-000001",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-001414",
+        "negative": "demo-000841",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000977",
+        "negative": "demo-001242",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000508",
+        "negative": "demo-000237",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000072",
+        "negative": "demo-001384",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-001452",
+        "negative": "demo-000235",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000343",
+        "negative": "demo-000312",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-001381",
+        "negative": "demo-001092",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-001100",
+        "negative": "demo-000660",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000642",
+        "negative": "demo-000909",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-001266",
+        "negative": "demo-001217",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000200",
+        "negative": "demo-000667",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-001255",
+        "negative": "demo-000197",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-001158",
+        "negative": "demo-001485",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-001423",
+        "negative": "demo-000874",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000873",
+        "negative": "demo-000099",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000988",
+        "negative": "demo-000912",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000505",
+        "negative": "demo-001195",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-001378",
+        "negative": "demo-000795",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000254",
+        "negative": "demo-001469",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-001139",
+        "negative": "demo-000138",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-001106",
+        "negative": "demo-000390",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000275",
+        "negative": "demo-001500",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000051",
+        "negative": "demo-000593",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000938",
+        "negative": "demo-000744",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000140",
+        "negative": "demo-000539",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000682",
+        "negative": "demo-001186",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000569",
+        "negative": "demo-000951",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000707",
+        "negative": "demo-000193",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000581",
+        "negative": "demo-001205",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000681",
+        "negative": "demo-000864",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-001359",
+        "negative": "demo-000805",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000039",
+        "negative": "demo-000721",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000239",
+        "negative": "demo-001086",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-001404",
+        "negative": "demo-000376",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000171",
+        "negative": "demo-001401",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000571",
+        "negative": "demo-000186",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000526",
+        "negative": "demo-000396",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000553",
+        "negative": "demo-000370",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-001115",
+        "negative": "demo-000026",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-001420",
+        "negative": "demo-000234",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000465",
+        "negative": "demo-000484",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000745",
+        "negative": "demo-000817",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000399",
+        "negative": "demo-000037",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-001116",
+        "negative": "demo-000140",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000486",
+        "negative": "demo-001361",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000642",
+        "negative": "demo-001425",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-001492",
+        "negative": "demo-000659",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000552",
+        "negative": "demo-001311",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000767",
+        "negative": "demo-000793",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000367",
+        "negative": "demo-000960",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000273",
+        "negative": "demo-001491",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000548",
+        "negative": "demo-000884",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000537",
+        "negative": "demo-000757",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000048",
+        "negative": "demo-001486",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000046",
+        "negative": "demo-000876",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-001422",
+        "negative": "demo-000159",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000980",
+        "negative": "demo-000286",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-001439",
+        "negative": "demo-000272",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-001106",
+        "negative": "demo-000323",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-001138",
+        "negative": "demo-000377",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-001375",
+        "negative": "demo-001020",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-001372",
+        "negative": "demo-000041",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000612",
+        "negative": "demo-000195",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000037",
+        "negative": "demo-000776",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000805",
+        "negative": "demo-001312",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-001021",
+        "negative": "demo-000702",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000500",
+        "negative": "demo-001486",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-001266",
+        "negative": "demo-000343",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000709",
+        "negative": "demo-000872",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000830",
+        "negative": "demo-000280",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-001137",
+        "negative": "demo-000179",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-001428",
+        "negative": "demo-000766",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000697",
+        "negative": "demo-000280",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000914",
+        "negative": "demo-000348",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000532",
+        "negative": "demo-000753",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000327",
+        "negative": "demo-000669",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-001256",
+        "negative": "demo-001201",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-001274",
+        "negative": "demo-000925",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-001477",
+        "negative": "demo-001242",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000591",
+        "negative": "demo-000988",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000001",
+        "negative": "demo-001459",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000046",
+        "negative": "demo-000039",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000979",
+        "negative": "demo-001266",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-001416",
+        "negative": "demo-001040",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000769",
+        "negative": "demo-000854",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-001085",
+        "negative": "demo-000853",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-001346",
+        "negative": "demo-000190",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000532",
+        "negative": "demo-000595",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000814",
+        "negative": "demo-000973",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-001045",
+        "negative": "demo-000392",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000688",
+        "negative": "demo-000538",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-001335",
+        "negative": "demo-001154",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000553",
+        "negative": "demo-000160",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-001278",
+        "negative": "demo-000327",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000690",
+        "negative": "demo-000074",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-001288",
+        "negative": "demo-000668",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000926",
+        "negative": "demo-001109",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000374",
+        "negative": "demo-001042",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000165",
+        "negative": "demo-000504",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000204",
+        "negative": "demo-001162",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000671",
+        "negative": "demo-000510",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000875",
+        "negative": "demo-000604",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000945",
+        "negative": "demo-001397",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000468",
+        "negative": "demo-000135",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000691",
+        "negative": "demo-000025",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000879",
+        "negative": "demo-000101",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000286",
+        "negative": "demo-001135",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-001173",
+        "negative": "demo-000406",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000853",
+        "negative": "demo-000116",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000333",
+        "negative": "demo-000822",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000930",
+        "negative": "demo-000773",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-001366",
+        "negative": "demo-000313",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-001273",
+        "negative": "demo-001153",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000890",
+        "negative": "demo-000116",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000775",
+        "negative": "demo-001194",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000352",
+        "negative": "demo-001101",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000529",
+        "negative": "demo-001105",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000644",
+        "negative": "demo-000720",
+        "reason": "same-domain:indoor"
+      },
+      {
+        "query": "demo-000041",
+        "negative": "demo-000120",
+        "reason": "same-domain:outdoor"
+      },
+      {
+        "query": "demo-000500",
+        "negative": "demo-001385",
+        "reason": "same-domain:outdoor"
+      }
+    ]
+  },
+  "loss_history_head": [
+    4.33302925469178,
+    4.331909588146235,
+    4.330817152953157,
+    4.329751373373222,
+    4.328711682785374
+  ],
+  "loss_history_tail": [
+    4.3663073807418815,
+    4.36825628033,
+    4.37019272960143,
+    4.37211546236866,
+    4.3740232825410486
+  ],
+  "failure_examples": [
+    {
+      "sample_id": "demo-001146",
+      "caption": "a narrow canal crossed by a stone bridge, viewed from angle 5",
+      "rank": 32,
+      "top_distractor": "a narrow canal crossed by a stone bridge, viewed from angle 4",
+      "subgroup": "common-object"
+    },
+    {
+      "sample_id": "demo-001147",
+      "caption": "a narrow canal crossed by a stone bridge, viewed from angle 2",
+      "rank": 31,
+      "top_distractor": "a narrow canal crossed by a stone bridge, viewed from angle 9",
+      "subgroup": "common-object"
+    },
+    {
+      "sample_id": "demo-000748",
+      "caption": "a hot air balloon rising over farmland, viewed from angle 5",
+      "rank": 24,
+      "top_distractor": "a hot air balloon rising over farmland, viewed from angle 4",
+      "subgroup": "lighting-normal"
+    },
+    {
+      "sample_id": "demo-001261",
+      "caption": "a narrow canal crossed by a stone bridge, viewed from angle 7",
+      "rank": 24,
+      "top_distractor": "a narrow canal crossed by a stone bridge, viewed from angle 7",
+      "subgroup": "region-asia"
+    },
+    {
+      "sample_id": "demo-000546",
+      "caption": "a violin hanging on a studio wall, viewed from angle 8",
+      "rank": 22,
+      "top_distractor": "a violin hanging on a studio wall, viewed from angle 2",
+      "subgroup": "lighting-normal"
+    },
+    {
+      "sample_id": "demo-000175",
+      "caption": "a row of novels on a study shelf, viewed from angle 9",
+      "rank": 21,
+      "top_distractor": "an antique clock above a stone fireplace, viewed from angle 1",
+      "subgroup": "lighting-normal"
+    },
+    {
+      "sample_id": "demo-000244",
+      "caption": "a violin hanging on a studio wall, viewed from angle 6",
+      "rank": 16,
+      "top_distractor": "a narrow canal crossed by a stone bridge, viewed from angle 2",
+      "subgroup": "rare-object"
+    },
+    {
+      "sample_id": "demo-000712",
+      "caption": "a wooden clock in a hallway, viewed from angle 2",
+      "rank": 15,
+      "top_distractor": "a wooden clock in a hallway, viewed from angle 1",
+      "subgroup": "rare-object"
+    },
+    {
+      "sample_id": "demo-001008",
+      "caption": "a wooden clock in a hallway, viewed from angle 5",
+      "rank": 14,
+      "top_distractor": "a wooden clock in a hallway, viewed from angle 5",
+      "subgroup": "rare-object"
+    },
+    {
+      "sample_id": "demo-001322",
+      "caption": "a hot air balloon rising over farmland, viewed from angle 7",
+      "rank": 14,
+      "top_distractor": "a hot air balloon rising over farmland, viewed from angle 4",
+      "subgroup": "rare-object"
+    }
+  ],
+  "artifacts": {
+    "manifest_id": "manifest-demo1500-92839f73f2bb",
+    "split_id": "splits-3f7231e076ef",
+    "lora_checkpoint": {
+      "path": "runs\\artifacts\\o3c-lora-hn-fair-1787806961-0c7a851f-lora.json",
+      "sha256": "5a7bf26aed1e72297691da6cd83f3a3aea5ffae173c888a21bed26810698ad86",
+      "state_hash": "2b6e3b3522f47552",
+      "trainable_params": 2176
+    }
+  },
+  "record_sha256": "62c087e43b4fb609a251f90494fa815f288f27a2d8ce79ac3952ed06ab891aac"
+}

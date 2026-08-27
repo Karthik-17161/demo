@@ -1,0 +1,23 @@
+# O2 — Reference / reproducible baseline (frozen comparison point)
+experiment:
+  name: o2-baseline
+  role: baseline
+  manifest_dir: evidence/demo
+  splits_path: evidence/splits/splits.json
+
+seed: 167
+
+encoder:
+  prefer_real: false          # true => drive pinned OpenCLIP ViT-B-32 instead
+  openclip_model: ViT-B-32
+  openclip_pretrained: laion2b_s34b_b79k
+  seed: 167
+
+lora:
+  enabled: false              # O2 never fine-tunes
+
+hard_negatives:
+  enabled: false
+
+fairness:
+  max_gap: 0.25               # audit-only at O2; gates apply to the candidate

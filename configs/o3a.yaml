@@ -1,0 +1,30 @@
+# O3a — baseline + LoRA (efficient fine-tuning only)
+experiment:
+  name: o3a-lora
+  role: candidate
+  manifest_dir: evidence/demo
+  splits_path: evidence/splits/splits.json
+
+seed: 167
+
+encoder:
+  prefer_real: false
+  openclip_model: ViT-B-32
+  openclip_pretrained: laion2b_s34b_b79k
+  seed: 167
+
+lora:
+  enabled: true
+  rank: 8
+  alpha: 8.0
+  gated: true
+  rounds: 3
+  epochs: 30
+  lr: 0.05
+  max_trainable_params: 100000   # fixed trainable-parameter budget
+
+hard_negatives:
+  enabled: false                 # ablation: curriculum OFF
+
+fairness:
+  max_gap: 0.25

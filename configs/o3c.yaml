@@ -1,0 +1,32 @@
+# O3c — O3b + subgroup-aware selection/audit (full contribution)
+experiment:
+  name: o3c-lora-hn-fair
+  role: candidate
+  manifest_dir: evidence/demo
+  splits_path: evidence/splits/splits.json
+
+seed: 167
+
+encoder:
+  prefer_real: false
+  openclip_model: ViT-B-32
+  openclip_pretrained: laion2b_s34b_b79k
+  seed: 167
+
+lora:
+  enabled: true
+  rank: 8
+  alpha: 8.0
+  gated: true
+  rounds: 3
+  epochs: 30
+  lr: 0.05
+  max_trainable_params: 100000
+
+hard_negatives:
+  enabled: true
+  max_pairs: 256
+
+fairness:
+  enabled: true               # subgroup-aware audit gates the candidate
+  max_gap: 0.25

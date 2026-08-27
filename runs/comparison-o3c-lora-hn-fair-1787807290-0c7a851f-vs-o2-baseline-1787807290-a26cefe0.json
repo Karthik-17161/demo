@@ -1,0 +1,74 @@
+{
+  "schema": "klcap-comparison-v1",
+  "baseline_run": "o2-baseline-1787807290-a26cefe0",
+  "candidate_run": "o3c-lora-hn-fair-1787807290-0c7a851f",
+  "gate": "PASS",
+  "metrics_delta": {
+    "recall@1": {
+      "baseline": 0.2894736842105263,
+      "candidate": 0.24561403508771928,
+      "delta": -0.04385964912280704
+    },
+    "recall@5": {
+      "baseline": 0.8640350877192983,
+      "candidate": 0.7894736842105263,
+      "delta": -0.07456140350877194
+    },
+    "recall@10": {
+      "baseline": 0.9517543859649122,
+      "candidate": 0.9254385964912281,
+      "delta": -0.02631578947368418
+    },
+    "mrr": {
+      "baseline": 0.5156121387058225,
+      "candidate": 0.46465266000015804,
+      "delta": -0.05095947870566442
+    },
+    "probe_accuracy": {
+      "baseline": 0.9868421052631579,
+      "candidate": 0.9824561403508771,
+      "delta": -0.004385964912280715
+    }
+  },
+  "resource": {
+    "baseline_energy_joules": 3.6912193298339844,
+    "candidate_energy_joules": 191.0477170944214,
+    "baseline_flops_train": 0.0,
+    "candidate_flops_train": 593856000.0,
+    "resource_improvement_fraction": -50.75734629212995
+  },
+  "critical_regression_check": {
+    "overall_delta_recall@1": -0.04385964912280704,
+    "critical_regressions": [
+      {
+        "slice": "by_subgroup:common-object",
+        "baseline_recall@1": 0.2894736842105263,
+        "candidate_recall@1": 0.21052631578947367,
+        "delta": -0.07894736842105265,
+        "critical": true
+      },
+      {
+        "slice": "by_subgroup:lighting-low",
+        "baseline_recall@1": 0.09090909090909091,
+        "candidate_recall@1": 0.0,
+        "delta": -0.09090909090909091,
+        "critical": true
+      },
+      {
+        "slice": "by_subgroup:rare-object",
+        "baseline_recall@1": 0.20512820512820512,
+        "candidate_recall@1": 0.1794871794871795,
+        "delta": -0.025641025641025633,
+        "critical": true
+      },
+      {
+        "slice": "by_subgroup:region-na",
+        "baseline_recall@1": 0.375,
+        "candidate_recall@1": 0.25,
+        "delta": -0.125,
+        "critical": true
+      }
+    ],
+    "verdict": "REVISE"
+  }
+}

@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>KLCAP-00167 · Vision-Language Lab (standalone)</title>
+<style>
+  :root {
+    --bg: #0e1116; --panel: #161b22; --border: #2a313c;
+    --text: #e6edf3; --muted: #8b949e; --accent: #4493f8;
+    --ok: #2ea043; --bad: #f85149; --warn: #d29922;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+         font-family: 'Segoe UI', system-ui, sans-serif; }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 24px; }
+  h1 { font-size: 1.4rem; margin: 0 0 4px; }
+  .sub { color: var(--muted); margin: 0 0 8px; max-width: 900px; }
+  .health { color: var(--muted); font-size: .9rem; }
+  .badge { display: inline-block; padding: 1px 8px; border-radius: 999px;
+           font-size: .78rem; font-weight: 600; }
+  .badge.ok { background: rgba(46,160,69,.18); color: var(--ok); }
+  .badge.bad { background: rgba(248,81,73,.18); color: var(--bad); }
+  .error { background: rgba(248,81,73,.12); border: 1px solid rgba(248,81,73,.4);
+           color: var(--bad); border-radius: 8px; padding: 10px 14px; margin: 12px 0; }
+  .toolbar { margin: 16px 0; display: flex; gap: 10px; }
+  button { background: var(--accent); color: white; border: none; border-radius: 8px;
+           padding: 10px 18px; font-size: .95rem; cursor: pointer; }
+  button:hover:not(:disabled) { filter: brightness(1.1); }
+  button:disabled { opacity: .5; cursor: wait; }
+  button.secondary { background: var(--panel); color: var(--text); border: 1px solid var(--border); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 16px; }
+  .card { background: var(--panel); border: 1px solid var(--border); border-radius: 12px;
+          padding: 16px 18px; }
+  .card.wide { grid-column: 1 / -1; }
+  .card h2 { font-size: 1.05rem; margin: 0 0 10px; }
+  table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+  th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--border); }
+  th { color: var(--muted); font-weight: 600; }
+  .mono { font-family: Consolas, monospace; font-size: .82rem; }
+  .muted { color: var(--muted); }
+  .metrics-row { display: flex; gap: 18px; margin-bottom: 10px; }
+  .metric-label { color: var(--muted); font-size: .8rem; }
+  .metric-value { font-size: 1.5rem; font-weight: 700; }
+  .delta.pos { color: var(--ok); font-size: .85rem; }
+  .delta.neg { color: var(--bad); font-size: .85rem; }
+  .decision { font-size: 2rem; font-weight: 800; letter-spacing: 2px; margin: 4px 0; }
+  .decision.accept { color: var(--ok); } .decision.revise { color: var(--warn); }
+  .decision.hold { color: var(--bad); }
+  ul.gates { list-style: none; padding: 0; margin: 8px 0 0; }
+  footer { margin-top: 20px; font-size: .8rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>KLCAP-2026-00167 · Vision-Language Representation Lab</h1>
+    <p class="sub">Standalone reviewer dashboard (no Node.js required). Start the API with
+      <code>python -m src.cli serve</code>, then use this page to launch the O2→O3 workflow,
+      inspect subgroup audits, acceptance decisions and negative-test evidence.</p>
+    <p class="health" id="health">API status: checking…</p>
+  </header>
+
+  <div class="error" id="error" style="display:none"></div>
+
+  <section class="toolbar">
+    <button id="runAll">▶ Run full O2→O3 workflow</button>
+    <button class="secondary" id="refresh">↻ Refresh</button>
+  </section>
+
+  <section class="grid">
+    <div class="card">
+      <h2>Runs</h2>
+      <table><thead><tr><th>Run</th><th>Role</th><th>Recall@1</th><th>Probe</th></tr></thead>
+        <tbody id="runsBody"><tr><td colspan="4" class="muted">No runs yet.</td></tr></tbody></table>
+    </div>
+
+    <div class="card">
+      <h2>O2 vs O3 comparison</h2>
+      <div id="comparison"><p class="muted">Run the workflow to compare.</p></div>
+    </div>
+
+    <div class="card">
+      <h2>Subgroup audit (O3 candidate)</h2>
+      <div id="slices"><p class="muted">No slice audit yet.</p></div>
+    </div>
+
+    <div class="card">
+      <h2>Acceptance decision</h2>
+      <div id="acceptance"><p class="muted">Not run yet.</p></div>
+    </div>
+
+    <div class="card wide">
+      <h2>Negative tests (assurance)</h2>
+      <div id="negTests"><p class="muted">Not run yet.</p></div>
+    </div>
+
+    <div class="card wide">
+      <h2>Registered experiments</h2>
+      <ul id="experiments" class="mono muted"><li>None yet.</li></ul>
+    </div>
+  </section>
+
+  <footer><span class="muted" id="footIds"></span></footer>
+</div>
+
+<script>
+const API = 'http://localhost:8000';
+let lastBaseline = null, lastCandidate = null;
+
+async function api(path, options) {
+  const res = await fetch(`${API}${path}`, {
+    headers: { 'Content-Type': 'application/json' }, ...options });
+  if (!res.ok) {
+    const body = await res.json().catch(() => ({}));
+    throw new Error(body.detail || `${res.status} ${res.statusText}`);
+  }
+  return res.json();
+}
+
+function badge(ok, text) {
+  return `<span class="badge ${ok ? 'ok' : 'bad'}">${text}</span>`;
+}
+
+async function refresh() {
+  const errEl = document.getElementById('error');
+  try {
+    const health = await api('/health');
+    document.getElementById('health').innerHTML =
+      `API ${badge(true, health.status)} · runs ${health.n_runs} · negative tests ` +
+      (health.negative_tests_recorded ? 'recorded ✓' : 'not run');
+
+    const runs = (await api('/runs')).runs;
+    document.getElementById('runsBody').innerHTML = runs.length === 0
+      ? '<tr><td colspan="4" class="muted">No runs yet.</td></tr>'
+      : runs.map(r => `<tr><td title="${r.run_id}">${r.experiment_name}</td>` +
+          `<td>${r.role}</td><td>${r['recall@1']?.toFixed(3)}</td>` +
+          `<td>${r.probe_accuracy?.toFixed(3)}</td></tr>`).join('');
+    lastBaseline = runs.find(r => r.role === 'baseline')?.run_id || null;
+    lastCandidate = runs.find(r => r.role === 'candidate')?.run_id || null;
+    document.getElementById('footIds').textContent =
+      `Baseline: ${lastBaseline || '—'} · Candidate: ${lastCandidate || '—'}`;
+
+    const exps = (await api('/experiments')).experiments;
+    document.getElementById('experiments').innerHTML = exps.length === 0 ? '<li>None yet.</li>'
+      : exps.map(e => `<li>${e.experiment_id} → ${e.config_path} (${e.runs.length} run(s))</li>`).join('');
+
+    // load latest saved evidence if present
+    try {
+      const rep = await api('/reports/acceptance_report');
+      renderAcceptance(rep);
+    } catch (_) {}
+    errEl.style.display = 'none';
+  } catch (e) {
+    errEl.style.display = '';
+    errEl.textContent = `API unreachable: ${e.message}. Start it with: python -m src.cli serve`;
+  }
+}
+
+function renderComparison(c) {
+  const md = c.metrics_delta;
+  const fmt = (k) => `
+    <div><div class="metric-label">${k}</div>
+    <div class="metric-value">${md[k].candidate.toFixed(3)}</div>
+    <div class="delta ${md[k].delta >= 0 ? 'pos' : 'neg'}">${md[k].delta >= 0 ? '▲' : '▼'}
+      ${Math.abs(md[k].delta).toFixed(3)}</div></div>`;
+  const ri = c.resource.resource_improvement_fraction;
+  document.getElementById('comparison').innerHTML = `
+    <div class="metrics-row">${fmt('recall@1')}${fmt('recall@5')}${fmt('probe_accuracy')}</div>
+    <p>Resource improvement: <strong>${ri === null ? 'claim disabled (telemetry)'
+      : (ri * 100).toFixed(1) + '%'}</strong></p>
+    <p>Critical-slice check: ${badge(c.critical_regression_check.verdict === 'OK',
+      c.critical_regression_check.verdict)}</p>`;
+}
+
+function renderSlices(s) {
+  const rows = Object.entries(s.by_subgroup || {}).map(([k, v]) =>
+    `<tr><td>${k}</td><td>${v.n}</td>` +
+    `<td>${Number.isNaN(v['recall@1']) ? '—' : v['recall@1'].toFixed(3)}</td></tr>`).join('');
+  const fv = s.fairness_verdict;
+  document.getElementById('slices').innerHTML =
+    `<table><thead><tr><th>Slice</th><th>n</th><th>Recall@1</th></tr></thead><tbody>${rows}</tbody></table>` +
+    (fv ? `<p style="margin-top:8px">Fairness ${badge(fv.fairness_ok,
+      `gap ${fv.max_observed_gap.toFixed(3)} / ${fv.threshold}`)}</p>` : '');
+}
+
+function renderAcceptance(a) {
+  const gates = (a.gates || []).map(g =>
+    `<li>${badge(g.pass, g.pass ? 'PASS' : 'FAIL')} ${g.gate}</li>`).join('');
+  document.getElementById('acceptance').innerHTML =
+    `<p class="decision ${a.overall.toLowerCase()}">${a.overall}</p><ul class="gates">${gates}</ul>`;
+}
+
+function renderNegTests(n) {
+  const rows = Object.entries(n.tests).map(([name, t]) =>
+    `<tr><td>${name.replaceAll('_', ' ')}</td>` +
+    `<td class="mono">${String(t.detail).slice(0, 90)}</td>` +
+    `<td>${badge(t.pass, t.pass ? 'DEMONSTRATED' : 'MISSING')}</td></tr>`).join('');
+  document.getElementById('negTests').innerHTML =
+    `<table><thead><tr><th>Injected fault</th><th>Guard behaviour</th><th>Result</th></tr></thead>` +
+    `<tbody>${rows}</tbody></table>`;
+}
+
+document.getElementById('refresh').onclick = refresh;
+
+document.getElementById('runAll').onclick = async () => {
+  const btn = document.getElementById('runAll');
+  btn.disabled = true; btn.textContent = 'Running full workflow…';
+  const errEl = document.getElementById('error'); errEl.style.display = 'none';
+  try {
+    await api('/datasets/demo',   { method: 'POST', body: '{}' });
+    await api('/datasets/freeze', { method: 'POST', body: '{}' });
+    const ids = {};
+    for (const cfg of ['configs/baseline.yaml', 'configs/o3c.yaml']) {
+      const exp = await api('/experiments', { method: 'POST',
+        body: JSON.stringify({ name: cfg.split('/').pop().replace('.yaml',''), config_path: cfg }) });
+      const run = await api(`/experiments/${exp.experiment_id}/run`,
+        { method: 'POST', body: '{}' });
+      ids[cfg.includes('baseline') ? 'baseline' : 'candidate'] = run.run_id;
+    }
+    renderComparison(await api(`/comparisons/${ids.baseline}/${ids.candidate}`));
+    renderSlices(await api(`/evaluations/${ids.candidate}/slices`));
+    renderAcceptance(await api(`/acceptance/${ids.candidate}/run`, { method: 'POST',
+      body: JSON.stringify({ baseline_id: ids.baseline }) }));
+    renderNegTests(await api('/negative-tests/run', { method: 'POST', body: '{}' }));
+    await refresh();
+  } catch (e) {
+    errEl.style.display = ''; errEl.textContent = e.message;
+  } finally {
+    btn.disabled = false; btn.textContent = '▶ Run full O2→O3 workflow';
+  }
+};
+
+refresh();
+</script>
+</body>
+</html>

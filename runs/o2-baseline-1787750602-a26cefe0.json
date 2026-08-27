@@ -1,0 +1,253 @@
+{
+  "schema": "klcap-run-v1",
+  "lab_version": "1.0.0",
+  "evaluator_version": "eval-1.0.0",
+  "run_id": "o2-baseline-1787750602-a26cefe0",
+  "experiment_name": "o2-baseline",
+  "role": "baseline",
+  "created_utc": "2026-08-26T13:23:22.597411+00:00",
+  "config": {
+    "experiment": {
+      "name": "o2-baseline",
+      "role": "baseline",
+      "manifest_dir": "evidence/demo",
+      "splits_path": "evidence/splits/splits.json"
+    },
+    "seed": 167,
+    "encoder": {
+      "prefer_real": false,
+      "openclip_model": "ViT-B-32",
+      "openclip_pretrained": "laion2b_s34b_b79k",
+      "seed": 167
+    },
+    "lora": {
+      "enabled": false
+    },
+    "hard_negatives": {
+      "enabled": false
+    },
+    "fairness": {
+      "max_gap": 0.25
+    }
+  },
+  "config_hash": "a26cefe0de72f0ba6e75f9900f2be787a0fdf401cd83a9ff568f13256cff6ef0",
+  "seed": 167,
+  "git_commit": "no-git",
+  "python_version": "3.11.9",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "encoder": {
+    "text": "hashing-text-v1",
+    "image": "hashing-image-v1",
+    "dim": 128
+  },
+  "data": {
+    "manifest_id": "manifest-demo600-7cec22bf6fbc",
+    "manifest_sha256": "1df76ed5c226601910367c2174af5ef0b20d49dfbb58463d05a26b4a40654556",
+    "split_id": "splits-9cb0591e3ae8",
+    "n_train": 419,
+    "n_validation": 88,
+    "n_acceptance": 93,
+    "licences": [
+      "CC-BY-4.0"
+    ]
+  },
+  "metrics": {
+    "recall@1": 0.08602150537634409,
+    "recall@5": 0.3978494623655914,
+    "recall@10": 0.7526881720430108,
+    "mrr": 0.24957132064018114,
+    "median_rank": 6.0,
+    "clean_recall@1": 0.08602150537634409,
+    "typo_recall@1": 0.06451612903225806,
+    "word_dropout_recall@1": 0.08602150537634409,
+    "robustness_drop": 0.02150537634408603,
+    "probe_accuracy": 1.0,
+    "probe_per_class": {
+      "0": 1.0,
+      "1": 1.0
+    }
+  },
+  "slices": {
+    "overall": {
+      "n": 93,
+      "recall@1": 0.08602150537634409,
+      "recall@5": 0.3978494623655914
+    },
+    "by_subgroup": {
+      "common-object": {
+        "n": 16,
+        "recall@1": 0.0625,
+        "recall@5": 0.4375
+      },
+      "lighting-low": {
+        "n": 6,
+        "recall@1": 0.0,
+        "recall@5": 0.3333333333333333
+      },
+      "lighting-normal": {
+        "n": 30,
+        "recall@1": 0.13333333333333333,
+        "recall@5": 0.43333333333333335
+      },
+      "rare-object": {
+        "n": 15,
+        "recall@1": 0.06666666666666667,
+        "recall@5": 0.26666666666666666
+      },
+      "region-asia": {
+        "n": 7,
+        "recall@1": 0.14285714285714285,
+        "recall@5": 0.5714285714285714
+      },
+      "region-eu": {
+        "n": 10,
+        "recall@1": 0.0,
+        "recall@5": 0.4
+      },
+      "region-na": {
+        "n": 9,
+        "recall@1": 0.1111111111111111,
+        "recall@5": 0.3333333333333333
+      }
+    },
+    "by_domain": {
+      "indoor": {
+        "n": 49,
+        "recall@1": 0.061224489795918366,
+        "recall@5": 0.2857142857142857
+      },
+      "outdoor": {
+        "n": 44,
+        "recall@1": 0.11363636363636363,
+        "recall@5": 0.5227272727272727
+      }
+    },
+    "disparity_subgroup": {
+      "max_gap_recall@1": 0.14285714285714285,
+      "worst_slice_recall@1": 0.0,
+      "best_slice_recall@1": 0.14285714285714285
+    },
+    "disparity_domain": {
+      "max_gap_recall@1": 0.05241187384044527,
+      "worst_slice_recall@1": 0.061224489795918366,
+      "best_slice_recall@1": 0.11363636363636363
+    }
+  },
+  "fairness_verdict": {
+    "fairness_ok": false,
+    "max_observed_gap": 0.14285714285714285,
+    "threshold": 0.25,
+    "flagged_slices": [
+      {
+        "slice": "subgroup:lighting-low",
+        "reason": "near-zero recall 0.000"
+      },
+      {
+        "slice": "subgroup:region-eu",
+        "reason": "near-zero recall 0.000"
+      }
+    ]
+  },
+  "telemetry": {
+    "run_id": "o2-baseline-1787750602-a26cefe0",
+    "started_utc": 1787750602.4974935,
+    "ended_utc": 1787750602.5958955,
+    "elapsed_s": 0.09840202331542969,
+    "flops_train": 0.0,
+    "flops_eval": 321792.0,
+    "energy_joules": 2.7552566528320312,
+    "energy_source": "tdp-estimate",
+    "gpu_name": null,
+    "cpu_model": "AMD64 Family 25 Model 80 Stepping 0, AuthenticAMD",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "complete": true,
+    "notes": [
+      "no NVML GPU; energy estimated from 28 W CPU TDP model"
+    ],
+    "energy_per_query_joules": 0.029626415621849797
+  },
+  "negative_log_summary": {
+    "n_negatives_used": 0,
+    "schedule": [],
+    "log": []
+  },
+  "loss_history_head": [],
+  "loss_history_tail": [],
+  "failure_examples": [
+    {
+      "sample_id": "demo-000483",
+      "caption": "a violin resting inside an open case, viewed from angle 6",
+      "rank": 19,
+      "top_distractor": "a hot air balloon rising over farmland, viewed from angle 3",
+      "subgroup": "region-eu"
+    },
+    {
+      "sample_id": "demo-000431",
+      "caption": "a sleeping cat on a sofa cushion, viewed from angle 4",
+      "rank": 18,
+      "top_distractor": "a hot air balloon rising over farmland, viewed from angle 2",
+      "subgroup": "region-na"
+    },
+    {
+      "sample_id": "demo-000342",
+      "caption": "a sleeping cat on a sofa cushion, viewed from angle 6",
+      "rank": 17,
+      "top_distractor": "a hot air balloon rising over farmland, viewed from angle 2",
+      "subgroup": "common-object"
+    },
+    {
+      "sample_id": "demo-000482",
+      "caption": "a violin resting inside an open case, viewed from angle 6",
+      "rank": 16,
+      "top_distractor": "a hot air balloon rising over farmland, viewed from angle 3",
+      "subgroup": "rare-object"
+    },
+    {
+      "sample_id": "demo-000103",
+      "caption": "a violin resting inside an open case, viewed from angle 6",
+      "rank": 15,
+      "top_distractor": "a hot air balloon rising over farmland, viewed from angle 3",
+      "subgroup": "lighting-normal"
+    },
+    {
+      "sample_id": "demo-000104",
+      "caption": "a violin resting inside an open case, viewed from angle 8",
+      "rank": 15,
+      "top_distractor": "a violin resting inside an open case, viewed from angle 6",
+      "subgroup": "rare-object"
+    },
+    {
+      "sample_id": "demo-000226",
+      "caption": "a sleeping cat on a sofa cushion, viewed from angle 4",
+      "rank": 15,
+      "top_distractor": "a hot air balloon rising over farmland, viewed from angle 2",
+      "subgroup": "lighting-normal"
+    },
+    {
+      "sample_id": "demo-000131",
+      "caption": "a violin resting inside an open case, viewed from angle 7",
+      "rank": 14,
+      "top_distractor": "a violin resting inside an open case, viewed from angle 6",
+      "subgroup": "region-na"
+    },
+    {
+      "sample_id": "demo-000227",
+      "caption": "a sleeping cat on a sofa cushion, viewed from angle 9",
+      "rank": 14,
+      "top_distractor": "a sleeping cat on a sofa cushion, viewed from angle 4",
+      "subgroup": "common-object"
+    },
+    {
+      "sample_id": "demo-000453",
+      "caption": "a violin resting inside an open case, viewed from angle 5",
+      "rank": 14,
+      "top_distractor": "a violin resting inside an open case, viewed from angle 6",
+      "subgroup": "rare-object"
+    }
+  ],
+  "artifacts": {
+    "manifest_id": "manifest-demo600-7cec22bf6fbc",
+    "split_id": "splits-9cb0591e3ae8"
+  },
+  "record_sha256": "e414544970d1825a298a53d9ab1b98067db3953dbee811481c055077aa52cd84"
+}

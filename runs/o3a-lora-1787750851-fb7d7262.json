@@ -1,0 +1,274 @@
+{
+  "schema": "klcap-run-v1",
+  "lab_version": "1.0.0",
+  "evaluator_version": "eval-1.0.0",
+  "run_id": "o3a-lora-1787750851-fb7d7262",
+  "experiment_name": "o3a-lora",
+  "role": "candidate",
+  "created_utc": "2026-08-26T13:27:32.677362+00:00",
+  "config": {
+    "experiment": {
+      "name": "o3a-lora",
+      "role": "candidate",
+      "manifest_dir": "evidence/demo",
+      "splits_path": "evidence/splits/splits.json"
+    },
+    "seed": 167,
+    "encoder": {
+      "prefer_real": false,
+      "openclip_model": "ViT-B-32",
+      "openclip_pretrained": "laion2b_s34b_b79k",
+      "seed": 167
+    },
+    "lora": {
+      "enabled": true,
+      "rank": 8,
+      "alpha": 8.0,
+      "gated": true,
+      "rounds": 3,
+      "epochs": 30,
+      "lr": 0.05,
+      "max_trainable_params": 100000
+    },
+    "hard_negatives": {
+      "enabled": false
+    },
+    "fairness": {
+      "max_gap": 0.25
+    }
+  },
+  "config_hash": "fb7d72625ad2ddd67e3bd6bda6626ffdd183082d6c3870f04eac4a573c35c900",
+  "seed": 167,
+  "git_commit": "no-git",
+  "python_version": "3.11.9",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "encoder": {
+    "text": "hashing-text-v1",
+    "image": "hashing-image-v1",
+    "dim": 128
+  },
+  "data": {
+    "manifest_id": "manifest-demo600-7cec22bf6fbc",
+    "manifest_sha256": "3ffde097135ea916aa3cee9ba22ce9f340ec0472bd08477d6b1720635d5137ba",
+    "split_id": "splits-8de1cd4e3773",
+    "n_train": 414,
+    "n_validation": 95,
+    "n_acceptance": 91,
+    "licences": [
+      "CC-BY-4.0"
+    ]
+  },
+  "metrics": {
+    "recall@1": 0.16483516483516483,
+    "recall@5": 0.6483516483516484,
+    "recall@10": 0.8901098901098901,
+    "mrr": 0.3752830090257369,
+    "median_rank": 3.0,
+    "clean_recall@1": 0.16483516483516483,
+    "typo_recall@1": 0.12087912087912088,
+    "word_dropout_recall@1": 0.16483516483516483,
+    "robustness_drop": 0.04395604395604395,
+    "probe_accuracy": 1.0,
+    "probe_per_class": {
+      "0": 1.0,
+      "1": 1.0
+    }
+  },
+  "slices": {
+    "overall": {
+      "n": 91,
+      "recall@1": 0.16483516483516483,
+      "recall@5": 0.6483516483516484
+    },
+    "by_subgroup": {
+      "common-object": {
+        "n": 23,
+        "recall@1": 0.2608695652173913,
+        "recall@5": 0.6956521739130435
+      },
+      "lighting-low": {
+        "n": 3,
+        "recall@1": 0.0,
+        "recall@5": 0.6666666666666666
+      },
+      "lighting-normal": {
+        "n": 18,
+        "recall@1": 0.05555555555555555,
+        "recall@5": 0.7222222222222222
+      },
+      "rare-object": {
+        "n": 17,
+        "recall@1": 0.23529411764705882,
+        "recall@5": 0.7058823529411765
+      },
+      "region-asia": {
+        "n": 9,
+        "recall@1": 0.1111111111111111,
+        "recall@5": 0.3333333333333333
+      },
+      "region-eu": {
+        "n": 8,
+        "recall@1": 0.125,
+        "recall@5": 0.5
+      },
+      "region-na": {
+        "n": 13,
+        "recall@1": 0.15384615384615385,
+        "recall@5": 0.6923076923076923
+      }
+    },
+    "by_domain": {
+      "indoor": {
+        "n": 50,
+        "recall@1": 0.12,
+        "recall@5": 0.46
+      },
+      "outdoor": {
+        "n": 41,
+        "recall@1": 0.21951219512195122,
+        "recall@5": 0.8780487804878049
+      }
+    },
+    "disparity_subgroup": {
+      "max_gap_recall@1": 0.2608695652173913,
+      "worst_slice_recall@1": 0.0,
+      "best_slice_recall@1": 0.2608695652173913
+    },
+    "disparity_domain": {
+      "max_gap_recall@1": 0.09951219512195122,
+      "worst_slice_recall@1": 0.12,
+      "best_slice_recall@1": 0.21951219512195122
+    }
+  },
+  "fairness_verdict": {
+    "fairness_ok": false,
+    "max_observed_gap": 0.2608695652173913,
+    "threshold": 0.25,
+    "flagged_slices": [
+      {
+        "slice": "subgroup:lighting-low",
+        "reason": "near-zero recall 0.000"
+      }
+    ]
+  },
+  "telemetry": {
+    "run_id": "o3a-lora-1787750851-fb7d7262",
+    "started_utc": 1787750851.382577,
+    "ended_utc": 1787750852.6602895,
+    "elapsed_s": 1.2777125835418701,
+    "flops_train": 228925440.0,
+    "flops_eval": 317952.0,
+    "energy_joules": 35.77595233917236,
+    "energy_source": "tdp-estimate",
+    "gpu_name": null,
+    "cpu_model": "AMD64 Family 25 Model 80 Stepping 0, AuthenticAMD",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "complete": true,
+    "notes": [
+      "no NVML GPU; energy estimated from 28 W CPU TDP model"
+    ],
+    "energy_per_query_joules": 0.3931423333974985
+  },
+  "negative_log_summary": {
+    "n_negatives_used": 0,
+    "schedule": [],
+    "log": []
+  },
+  "loss_history_head": [
+    4.100761652891791,
+    4.099989882176148,
+    4.099224712518231,
+    4.098466050791391,
+    4.097713805553567
+  ],
+  "loss_history_tail": [
+    4.052020972241133,
+    4.051590752058992,
+    4.051162838009235,
+    4.050737204908776,
+    4.050313827902141
+  ],
+  "failure_examples": [
+    {
+      "sample_id": "demo-000230",
+      "caption": "a row of novels on a study shelf, viewed from angle 1",
+      "rank": 21,
+      "top_distractor": "a row of novels on a study shelf, viewed from angle 4",
+      "subgroup": "common-object"
+    },
+    {
+      "sample_id": "demo-000231",
+      "caption": "a row of novels on a study shelf, viewed from angle 1",
+      "rank": 19,
+      "top_distractor": "a row of novels on a study shelf, viewed from angle 4",
+      "subgroup": "lighting-normal"
+    },
+    {
+      "sample_id": "demo-000465",
+      "caption": "a wooden clock in a hallway, viewed from angle 1",
+      "rank": 16,
+      "top_distractor": "a wooden clock in a hallway, viewed from angle 6",
+      "subgroup": "rare-object"
+    },
+    {
+      "sample_id": "demo-000378",
+      "caption": "an antique clock above a stone fireplace, viewed from angle 1",
+      "rank": 13,
+      "top_distractor": "an antique clock above a stone fireplace, viewed from angle 2",
+      "subgroup": "region-asia"
+    },
+    {
+      "sample_id": "demo-000257",
+      "caption": "an antique clock above a stone fireplace, viewed from angle 4",
+      "rank": 12,
+      "top_distractor": "an antique clock above a stone fireplace, viewed from angle 2",
+      "subgroup": "region-asia"
+    },
+    {
+      "sample_id": "demo-000443",
+      "caption": "a stack of paperbacks beside a reading lamp, viewed from angle 7",
+      "rank": 11,
+      "top_distractor": "an antique clock above a stone fireplace, viewed from angle 2",
+      "subgroup": "lighting-normal"
+    },
+    {
+      "sample_id": "demo-000496",
+      "caption": "an antique clock above a stone fireplace, viewed from angle 8",
+      "rank": 11,
+      "top_distractor": "an antique clock above a stone fireplace, viewed from angle 2",
+      "subgroup": "region-asia"
+    },
+    {
+      "sample_id": "demo-000112",
+      "caption": "a row of novels on a study shelf, viewed from angle 9",
+      "rank": 10,
+      "top_distractor": "a row of novels on a study shelf, viewed from angle 4",
+      "subgroup": "common-object"
+    },
+    {
+      "sample_id": "demo-000144",
+      "caption": "a stack of paperbacks beside a reading lamp, viewed from angle 5",
+      "rank": 10,
+      "top_distractor": "an antique clock above a stone fireplace, viewed from angle 2",
+      "subgroup": "common-object"
+    },
+    {
+      "sample_id": "demo-000493",
+      "caption": "an antique clock above a stone fireplace, viewed from angle 4",
+      "rank": 10,
+      "top_distractor": "an antique clock above a stone fireplace, viewed from angle 2",
+      "subgroup": "lighting-low"
+    }
+  ],
+  "artifacts": {
+    "manifest_id": "manifest-demo600-7cec22bf6fbc",
+    "split_id": "splits-8de1cd4e3773",
+    "lora_checkpoint": {
+      "path": "runs\\artifacts\\o3a-lora-1787750851-fb7d7262-lora.json",
+      "sha256": "57d1ea450183169d114edd659dc481b85c8cbe03bdb0588557442df77e5a5626",
+      "state_hash": "395a88a90c21bdcc",
+      "trainable_params": 2176
+    }
+  },
+  "record_sha256": "6ca197014528cd6b369d120437e9b5c8f81176166be312a7ba110070e1dc46c1"
+}

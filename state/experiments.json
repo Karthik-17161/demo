@@ -1,0 +1,22 @@
+{
+  "baseline-a7232f7a": {
+    "experiment_id": "baseline-a7232f7a",
+    "name": "baseline",
+    "config_path": "C:\\Users\\Asus\\Desktop\\architecture\\configs\\baseline.yaml",
+    "config_hash": "a26cefe0de72f0ba",
+    "created_utc": "2026-08-27T05:08:10.520083+00:00",
+    "runs": [
+      "o2-baseline-1787807290-a26cefe0"
+    ]
+  },
+  "o3c-ed22db9a": {
+    "experiment_id": "o3c-ed22db9a",
+    "name": "o3c",
+    "config_path": "C:\\Users\\Asus\\Desktop\\architecture\\configs\\o3c.yaml",
+    "config_hash": "0c7a851f78d88c17",
+    "created_utc": "2026-08-27T05:08:10.747332+00:00",
+    "runs": [
+      "o3c-lora-hn-fair-1787807290-0c7a851f"
+    ]
+  }
+}

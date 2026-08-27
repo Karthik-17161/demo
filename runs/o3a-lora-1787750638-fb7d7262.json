@@ -1,0 +1,282 @@
+{
+  "schema": "klcap-run-v1",
+  "lab_version": "1.0.0",
+  "evaluator_version": "eval-1.0.0",
+  "run_id": "o3a-lora-1787750638-fb7d7262",
+  "experiment_name": "o3a-lora",
+  "role": "candidate",
+  "created_utc": "2026-08-26T13:23:59.423661+00:00",
+  "config": {
+    "experiment": {
+      "name": "o3a-lora",
+      "role": "candidate",
+      "manifest_dir": "evidence/demo",
+      "splits_path": "evidence/splits/splits.json"
+    },
+    "seed": 167,
+    "encoder": {
+      "prefer_real": false,
+      "openclip_model": "ViT-B-32",
+      "openclip_pretrained": "laion2b_s34b_b79k",
+      "seed": 167
+    },
+    "lora": {
+      "enabled": true,
+      "rank": 8,
+      "alpha": 8.0,
+      "gated": true,
+      "rounds": 3,
+      "epochs": 30,
+      "lr": 0.05,
+      "max_trainable_params": 100000
+    },
+    "hard_negatives": {
+      "enabled": false
+    },
+    "fairness": {
+      "max_gap": 0.25
+    }
+  },
+  "config_hash": "fb7d72625ad2ddd67e3bd6bda6626ffdd183082d6c3870f04eac4a573c35c900",
+  "seed": 167,
+  "git_commit": "no-git",
+  "python_version": "3.11.9",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "encoder": {
+    "text": "hashing-text-v1",
+    "image": "hashing-image-v1",
+    "dim": 128
+  },
+  "data": {
+    "manifest_id": "manifest-demo600-7cec22bf6fbc",
+    "manifest_sha256": "1df76ed5c226601910367c2174af5ef0b20d49dfbb58463d05a26b4a40654556",
+    "split_id": "splits-9cb0591e3ae8",
+    "n_train": 419,
+    "n_validation": 88,
+    "n_acceptance": 93,
+    "licences": [
+      "CC-BY-4.0"
+    ]
+  },
+  "metrics": {
+    "recall@1": 0.0967741935483871,
+    "recall@5": 0.40860215053763443,
+    "recall@10": 0.7096774193548387,
+    "mrr": 0.26312997981079467,
+    "median_rank": 5.0,
+    "clean_recall@1": 0.0967741935483871,
+    "typo_recall@1": 0.08602150537634409,
+    "word_dropout_recall@1": 0.10752688172043011,
+    "robustness_drop": 0.010752688172043001,
+    "probe_accuracy": 1.0,
+    "probe_per_class": {
+      "0": 1.0,
+      "1": 1.0
+    }
+  },
+  "slices": {
+    "overall": {
+      "n": 93,
+      "recall@1": 0.0967741935483871,
+      "recall@5": 0.40860215053763443
+    },
+    "by_subgroup": {
+      "common-object": {
+        "n": 16,
+        "recall@1": 0.125,
+        "recall@5": 0.5625
+      },
+      "lighting-low": {
+        "n": 6,
+        "recall@1": 0.0,
+        "recall@5": 0.5
+      },
+      "lighting-normal": {
+        "n": 30,
+        "recall@1": 0.13333333333333333,
+        "recall@5": 0.4666666666666667
+      },
+      "rare-object": {
+        "n": 15,
+        "recall@1": 0.06666666666666667,
+        "recall@5": 0.2
+      },
+      "region-asia": {
+        "n": 7,
+        "recall@1": 0.0,
+        "recall@5": 0.42857142857142855
+      },
+      "region-eu": {
+        "n": 10,
+        "recall@1": 0.0,
+        "recall@5": 0.4
+      },
+      "region-na": {
+        "n": 9,
+        "recall@1": 0.2222222222222222,
+        "recall@5": 0.2222222222222222
+      }
+    },
+    "by_domain": {
+      "indoor": {
+        "n": 49,
+        "recall@1": 0.08163265306122448,
+        "recall@5": 0.2857142857142857
+      },
+      "outdoor": {
+        "n": 44,
+        "recall@1": 0.11363636363636363,
+        "recall@5": 0.5454545454545454
+      }
+    },
+    "disparity_subgroup": {
+      "max_gap_recall@1": 0.2222222222222222,
+      "worst_slice_recall@1": 0.0,
+      "best_slice_recall@1": 0.2222222222222222
+    },
+    "disparity_domain": {
+      "max_gap_recall@1": 0.03200371057513915,
+      "worst_slice_recall@1": 0.08163265306122448,
+      "best_slice_recall@1": 0.11363636363636363
+    }
+  },
+  "fairness_verdict": {
+    "fairness_ok": false,
+    "max_observed_gap": 0.2222222222222222,
+    "threshold": 0.25,
+    "flagged_slices": [
+      {
+        "slice": "subgroup:lighting-low",
+        "reason": "near-zero recall 0.000"
+      },
+      {
+        "slice": "subgroup:region-asia",
+        "reason": "near-zero recall 0.000"
+      },
+      {
+        "slice": "subgroup:region-eu",
+        "reason": "near-zero recall 0.000"
+      }
+    ]
+  },
+  "telemetry": {
+    "run_id": "o3a-lora-1787750638-fb7d7262",
+    "started_utc": 1787750638.2693427,
+    "ended_utc": 1787750639.4091208,
+    "elapsed_s": 1.1397781372070312,
+    "flops_train": 231690240.0,
+    "flops_eval": 321792.0,
+    "energy_joules": 31.913787841796875,
+    "energy_source": "tdp-estimate",
+    "gpu_name": null,
+    "cpu_model": "AMD64 Family 25 Model 80 Stepping 0, AuthenticAMD",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "complete": true,
+    "notes": [
+      "no NVML GPU; energy estimated from 28 W CPU TDP model"
+    ],
+    "energy_per_query_joules": 0.3431590090515793
+  },
+  "negative_log_summary": {
+    "n_negatives_used": 0,
+    "schedule": [],
+    "log": []
+  },
+  "loss_history_head": [
+    4.4734620837032155,
+    4.472686875085863,
+    4.471919070920691,
+    4.47115854190897,
+    4.470405161538554
+  ],
+  "loss_history_tail": [
+    4.42519103300412,
+    4.4247613647608475,
+    4.424333727750117,
+    4.423908094973722,
+    4.423484439852444
+  ],
+  "failure_examples": [
+    {
+      "sample_id": "demo-000139",
+      "caption": "a sleeping cat on a sofa cushion, viewed from angle 4",
+      "rank": 19,
+      "top_distractor": "a hot air balloon rising over farmland, viewed from angle 9",
+      "subgroup": "region-eu"
+    },
+    {
+      "sample_id": "demo-000482",
+      "caption": "a violin resting inside an open case, viewed from angle 6",
+      "rank": 19,
+      "top_distractor": "a hot air balloon rising over farmland, viewed from angle 3",
+      "subgroup": "rare-object"
+    },
+    {
+      "sample_id": "demo-000483",
+      "caption": "a violin resting inside an open case, viewed from angle 6",
+      "rank": 18,
+      "top_distractor": "a hot air balloon rising over farmland, viewed from angle 3",
+      "subgroup": "region-eu"
+    },
+    {
+      "sample_id": "demo-000088",
+      "caption": "a stack of paperbacks beside a reading lamp, viewed from angle 6",
+      "rank": 17,
+      "top_distractor": "a stack of paperbacks beside a reading lamp, viewed from angle 9",
+      "subgroup": "lighting-normal"
+    },
+    {
+      "sample_id": "demo-000113",
+      "caption": "a stack of paperbacks beside a reading lamp, viewed from angle 4",
+      "rank": 17,
+      "top_distractor": "a stack of paperbacks beside a reading lamp, viewed from angle 9",
+      "subgroup": "region-eu"
+    },
+    {
+      "sample_id": "demo-000130",
+      "caption": "a violin resting inside an open case, viewed from angle 6",
+      "rank": 17,
+      "top_distractor": "a hot air balloon rising over farmland, viewed from angle 3",
+      "subgroup": "rare-object"
+    },
+    {
+      "sample_id": "demo-000115",
+      "caption": "a stack of paperbacks beside a reading lamp, viewed from angle 6",
+      "rank": 15,
+      "top_distractor": "a stack of paperbacks beside a reading lamp, viewed from angle 9",
+      "subgroup": "region-asia"
+    },
+    {
+      "sample_id": "demo-000140",
+      "caption": "a sleeping cat on a sofa cushion, viewed from angle 4",
+      "rank": 15,
+      "top_distractor": "a hot air balloon rising over farmland, viewed from angle 9",
+      "subgroup": "lighting-normal"
+    },
+    {
+      "sample_id": "demo-000114",
+      "caption": "a stack of paperbacks beside a reading lamp, viewed from angle 7",
+      "rank": 14,
+      "top_distractor": "a stack of paperbacks beside a reading lamp, viewed from angle 9",
+      "subgroup": "common-object"
+    },
+    {
+      "sample_id": "demo-000103",
+      "caption": "a violin resting inside an open case, viewed from angle 6",
+      "rank": 13,
+      "top_distractor": "a hot air balloon rising over farmland, viewed from angle 3",
+      "subgroup": "lighting-normal"
+    }
+  ],
+  "artifacts": {
+    "manifest_id": "manifest-demo600-7cec22bf6fbc",
+    "split_id": "splits-9cb0591e3ae8",
+    "lora_checkpoint": {
+      "path": "runs\\artifacts\\o3a-lora-1787750638-fb7d7262-lora.json",
+      "sha256": "73c288c2248483a9a844168471a44c78a51c4e34f807f0626c46e63699dd19c4",
+      "state_hash": "755691c90565e1c5",
+      "trainable_params": 2176
+    }
+  },
+  "record_sha256": "714adf1b3058e76f6058f5a8e6f603136cd4cec2190d2ac8c7dc9055df65cf31"
+}

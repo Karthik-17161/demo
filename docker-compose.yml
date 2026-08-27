@@ -1,0 +1,78 @@
+version: "3.9"
+
+# Full stack: API + worker (same image), PostgreSQL state, MinIO artifact
+# store, and the React reviewer dashboard.
+
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: postgresql://lab:lab@db:5432/lab
+      ARTIFACT_S3_ENDPOINT: http://objects:9000
+      ARTIFACT_S3_KEY: labminio
+      ARTIFACT_S3_SECRET: labminio-secret
+    volumes:
+      - runs:/lab/runs
+      - evidence:/lab/evidence
+      - state:/lab/state
+    depends_on:
+      db:
+        condition: service_healthy
+      objects:
+        condition: service_started
+
+  worker:
+    build: .
+    command: ["python", "-m", "src.cli", "negative-tests", "--out", "evidence/negative_tests.json"]
+    environment:
+      DATABASE_URL: postgresql://lab:lab@db:5432/lab
+    volumes:
+      - runs:/lab/runs
+      - evidence:/lab/evidence
+    depends_on:
+      - api
+
+  dashboard:
+    image: node:20-slim
+    working_dir: /web
+    command: sh -c "npm install && npm run dev -- --host"
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./apps/web:/web
+    depends_on:
+      - api
+
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: lab
+      POSTGRES_PASSWORD: lab
+      POSTGRES_DB: lab
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U lab"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  objects:
+    image: minio/minio:latest
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: labminio
+      MINIO_ROOT_PASSWORD: labminio-secret
+    ports:
+      - "9001:9001"
+    volumes:
+      - artifacts:/data
+
+volumes:
+  runs:
+  evidence:
+  state:
+  pgdata:
+  artifacts:

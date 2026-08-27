@@ -1,0 +1,41 @@
+{
+  "approved_domains": [
+    "indoor",
+    "outdoor"
+  ],
+  "approved_subgroups": [
+    "common-object",
+    "lighting-low",
+    "lighting-normal",
+    "rare-object",
+    "region-asia",
+    "region-eu",
+    "region-na"
+  ],
+  "created_utc": "2026-08-27T05:08:10.445563+00:00",
+  "domains": [
+    "indoor",
+    "outdoor"
+  ],
+  "licences": [
+    "CC-BY-4.0"
+  ],
+  "manifest_id": "manifest-demo1500-92839f73f2bb",
+  "n_records": 1500,
+  "records_path": "records.jsonl",
+  "records_sha256": "49af2f639bc215bdac76c575ee622d028ede222e47999a7817de13af07536260",
+  "sources": [
+    "demo-synthetic-v1"
+  ],
+  "split_frozen": true,
+  "split_unit": "scene_id",
+  "subgroups": [
+    "common-object",
+    "lighting-low",
+    "lighting-normal",
+    "rare-object",
+    "region-asia",
+    "region-eu",
+    "region-na"
+  ]
+}

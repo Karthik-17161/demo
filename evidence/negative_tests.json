@@ -1,0 +1,63 @@
+{
+  "schema": "klcap-negative-tests-v1",
+  "created_utc": "2026-08-27T05:08:17.730809+00:00",
+  "all_pass": true,
+  "tests": {
+    "unequal_compute_blocked": {
+      "pass": true,
+      "detail": "unequal data: manifest manifest-x != manifest-CHANGED"
+    },
+    "leakage_detected": {
+      "pass": true,
+      "detail": [
+        "scene outdoor-scene-0001 leaks across splits ['acceptance', 'train']"
+      ]
+    },
+    "abstention_labelled": {
+      "pass": true,
+      "detail": {
+        "out_of_domain": {
+          "status": "ABSTAIN",
+          "reasons": [
+            "unapproved domain 'underwater'",
+            "missing required subgroup metadata"
+          ],
+          "results": [],
+          "claim": null
+        },
+        "missing_metadata": {
+          "status": "ABSTAIN",
+          "reasons": [
+            "missing required subgroup metadata"
+          ],
+          "results": [],
+          "claim": null
+        }
+      }
+    },
+    "critical_regression_revise": {
+      "pass": true,
+      "detail": {
+        "overall_delta_recall@1": 0.06000000000000005,
+        "critical_regressions": [
+          {
+            "slice": "by_subgroup:rare-object",
+            "baseline_recall@1": 0.4,
+            "candidate_recall@1": 0.3,
+            "delta": -0.10000000000000003,
+            "critical": true
+          }
+        ],
+        "verdict": "REVISE"
+      }
+    },
+    "artifact_mismatch_refused": {
+      "pass": true,
+      "detail": "artifact mismatch: LoRA state hash does not match saved hash"
+    },
+    "telemetry_missing_no_claim": {
+      "pass": true,
+      "detail": "telemetry unavailable/incomplete: resource claims disabled"
+    }
+  }
+}

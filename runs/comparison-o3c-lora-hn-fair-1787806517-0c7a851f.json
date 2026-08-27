@@ -1,0 +1,60 @@
+{
+  "schema": "klcap-comparison-v1",
+  "baseline_run": "o2-baseline-1787806514-a26cefe0",
+  "candidate_run": "o3c-lora-hn-fair-1787806517-0c7a851f",
+  "gate": "PASS",
+  "metrics_delta": {
+    "recall@1": {
+      "baseline": 0.4175824175824176,
+      "candidate": 0.4175824175824176,
+      "delta": 0.0
+    },
+    "recall@5": {
+      "baseline": 0.8901098901098901,
+      "candidate": 0.8461538461538461,
+      "delta": -0.04395604395604391
+    },
+    "recall@10": {
+      "baseline": 0.967032967032967,
+      "candidate": 0.967032967032967,
+      "delta": 0.0
+    },
+    "mrr": {
+      "baseline": 0.6104421372278516,
+      "candidate": 0.5911412000697716,
+      "delta": -0.01930093715808001
+    },
+    "probe_accuracy": {
+      "baseline": 1.0,
+      "candidate": 1.0,
+      "delta": 0.0
+    }
+  },
+  "resource": {
+    "baseline_energy_joules": 1.8348817825317383,
+    "candidate_energy_joules": 37.36672306060791,
+    "baseline_flops_train": 0.0,
+    "candidate_flops_train": 243717120.0,
+    "resource_improvement_fraction": -19.364648783558117
+  },
+  "critical_regression_check": {
+    "overall_delta_recall@1": 0.0,
+    "critical_regressions": [
+      {
+        "slice": "by_subgroup:rare-object",
+        "baseline_recall@1": 0.47058823529411764,
+        "candidate_recall@1": 0.4117647058823529,
+        "delta": -0.05882352941176472,
+        "critical": true
+      },
+      {
+        "slice": "by_subgroup:region-eu",
+        "baseline_recall@1": 0.5,
+        "candidate_recall@1": 0.25,
+        "delta": -0.25,
+        "critical": true
+      }
+    ],
+    "verdict": "REVISE"
+  }
+}

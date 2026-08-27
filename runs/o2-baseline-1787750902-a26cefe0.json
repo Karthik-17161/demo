@@ -1,0 +1,253 @@
+{
+  "schema": "klcap-run-v1",
+  "lab_version": "1.0.0",
+  "evaluator_version": "eval-1.0.0",
+  "run_id": "o2-baseline-1787750902-a26cefe0",
+  "experiment_name": "o2-baseline",
+  "role": "baseline",
+  "created_utc": "2026-08-26T13:28:22.801887+00:00",
+  "config": {
+    "experiment": {
+      "name": "o2-baseline",
+      "role": "baseline",
+      "manifest_dir": "evidence/demo",
+      "splits_path": "evidence/splits/splits.json"
+    },
+    "seed": 167,
+    "encoder": {
+      "prefer_real": false,
+      "openclip_model": "ViT-B-32",
+      "openclip_pretrained": "laion2b_s34b_b79k",
+      "seed": 167
+    },
+    "lora": {
+      "enabled": false
+    },
+    "hard_negatives": {
+      "enabled": false
+    },
+    "fairness": {
+      "max_gap": 0.25
+    }
+  },
+  "config_hash": "a26cefe0de72f0ba6e75f9900f2be787a0fdf401cd83a9ff568f13256cff6ef0",
+  "seed": 167,
+  "git_commit": "no-git",
+  "python_version": "3.11.9",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "encoder": {
+    "text": "hashing-text-v1",
+    "image": "hashing-image-v1",
+    "dim": 128
+  },
+  "data": {
+    "manifest_id": "manifest-demo600-7cec22bf6fbc",
+    "manifest_sha256": "3ffde097135ea916aa3cee9ba22ce9f340ec0472bd08477d6b1720635d5137ba",
+    "split_id": "splits-8de1cd4e3773",
+    "n_train": 414,
+    "n_validation": 95,
+    "n_acceptance": 91,
+    "licences": [
+      "CC-BY-4.0"
+    ]
+  },
+  "metrics": {
+    "recall@1": 0.15384615384615385,
+    "recall@5": 0.6483516483516484,
+    "recall@10": 0.9010989010989011,
+    "mrr": 0.36090173032361283,
+    "median_rank": 3.0,
+    "clean_recall@1": 0.15384615384615385,
+    "typo_recall@1": 0.10989010989010989,
+    "word_dropout_recall@1": 0.13186813186813187,
+    "robustness_drop": 0.043956043956043966,
+    "probe_accuracy": 1.0,
+    "probe_per_class": {
+      "0": 1.0,
+      "1": 1.0
+    }
+  },
+  "slices": {
+    "overall": {
+      "n": 91,
+      "recall@1": 0.15384615384615385,
+      "recall@5": 0.6483516483516484
+    },
+    "by_subgroup": {
+      "common-object": {
+        "n": 23,
+        "recall@1": 0.17391304347826086,
+        "recall@5": 0.6086956521739131
+      },
+      "lighting-low": {
+        "n": 3,
+        "recall@1": 0.0,
+        "recall@5": 0.6666666666666666
+      },
+      "lighting-normal": {
+        "n": 18,
+        "recall@1": 0.16666666666666666,
+        "recall@5": 0.7222222222222222
+      },
+      "rare-object": {
+        "n": 17,
+        "recall@1": 0.23529411764705882,
+        "recall@5": 0.7647058823529411
+      },
+      "region-asia": {
+        "n": 9,
+        "recall@1": 0.0,
+        "recall@5": 0.4444444444444444
+      },
+      "region-eu": {
+        "n": 8,
+        "recall@1": 0.25,
+        "recall@5": 0.5
+      },
+      "region-na": {
+        "n": 13,
+        "recall@1": 0.07692307692307693,
+        "recall@5": 0.6923076923076923
+      }
+    },
+    "by_domain": {
+      "indoor": {
+        "n": 50,
+        "recall@1": 0.12,
+        "recall@5": 0.46
+      },
+      "outdoor": {
+        "n": 41,
+        "recall@1": 0.1951219512195122,
+        "recall@5": 0.8780487804878049
+      }
+    },
+    "disparity_subgroup": {
+      "max_gap_recall@1": 0.25,
+      "worst_slice_recall@1": 0.0,
+      "best_slice_recall@1": 0.25
+    },
+    "disparity_domain": {
+      "max_gap_recall@1": 0.0751219512195122,
+      "worst_slice_recall@1": 0.12,
+      "best_slice_recall@1": 0.1951219512195122
+    }
+  },
+  "fairness_verdict": {
+    "fairness_ok": false,
+    "max_observed_gap": 0.25,
+    "threshold": 0.25,
+    "flagged_slices": [
+      {
+        "slice": "subgroup:lighting-low",
+        "reason": "near-zero recall 0.000"
+      },
+      {
+        "slice": "subgroup:region-asia",
+        "reason": "near-zero recall 0.000"
+      }
+    ]
+  },
+  "telemetry": {
+    "run_id": "o2-baseline-1787750902-a26cefe0",
+    "started_utc": 1787750902.707652,
+    "ended_utc": 1787750902.8003805,
+    "elapsed_s": 0.0927283763885498,
+    "flops_train": 0.0,
+    "flops_eval": 317952.0,
+    "energy_joules": 2.5963945388793945,
+    "energy_source": "tdp-estimate",
+    "gpu_name": null,
+    "cpu_model": "AMD64 Family 25 Model 80 Stepping 0, AuthenticAMD",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "complete": true,
+    "notes": [
+      "no NVML GPU; energy estimated from 28 W CPU TDP model"
+    ],
+    "energy_per_query_joules": 0.028531808119553786
+  },
+  "negative_log_summary": {
+    "n_negatives_used": 0,
+    "schedule": [],
+    "log": []
+  },
+  "loss_history_head": [],
+  "loss_history_tail": [],
+  "failure_examples": [
+    {
+      "sample_id": "demo-000231",
+      "caption": "a row of novels on a study shelf, viewed from angle 1",
+      "rank": 22,
+      "top_distractor": "a row of novels on a study shelf, viewed from angle 4",
+      "subgroup": "lighting-normal"
+    },
+    {
+      "sample_id": "demo-000230",
+      "caption": "a row of novels on a study shelf, viewed from angle 1",
+      "rank": 21,
+      "top_distractor": "a row of novels on a study shelf, viewed from angle 4",
+      "subgroup": "common-object"
+    },
+    {
+      "sample_id": "demo-000465",
+      "caption": "a wooden clock in a hallway, viewed from angle 1",
+      "rank": 17,
+      "top_distractor": "a wooden clock in a hallway, viewed from angle 6",
+      "subgroup": "rare-object"
+    },
+    {
+      "sample_id": "demo-000378",
+      "caption": "an antique clock above a stone fireplace, viewed from angle 1",
+      "rank": 13,
+      "top_distractor": "an antique clock above a stone fireplace, viewed from angle 2",
+      "subgroup": "region-asia"
+    },
+    {
+      "sample_id": "demo-000257",
+      "caption": "an antique clock above a stone fireplace, viewed from angle 4",
+      "rank": 12,
+      "top_distractor": "an antique clock above a stone fireplace, viewed from angle 2",
+      "subgroup": "region-asia"
+    },
+    {
+      "sample_id": "demo-000443",
+      "caption": "a stack of paperbacks beside a reading lamp, viewed from angle 7",
+      "rank": 12,
+      "top_distractor": "an antique clock above a stone fireplace, viewed from angle 4",
+      "subgroup": "lighting-normal"
+    },
+    {
+      "sample_id": "demo-000494",
+      "caption": "an antique clock above a stone fireplace, viewed from angle 9",
+      "rank": 11,
+      "top_distractor": "an antique clock above a stone fireplace, viewed from angle 2",
+      "subgroup": "region-eu"
+    },
+    {
+      "sample_id": "demo-000112",
+      "caption": "a row of novels on a study shelf, viewed from angle 9",
+      "rank": 10,
+      "top_distractor": "a row of novels on a study shelf, viewed from angle 4",
+      "subgroup": "common-object"
+    },
+    {
+      "sample_id": "demo-000495",
+      "caption": "an antique clock above a stone fireplace, viewed from angle 2",
+      "rank": 10,
+      "top_distractor": "an antique clock above a stone fireplace, viewed from angle 2",
+      "subgroup": "rare-object"
+    },
+    {
+      "sample_id": "demo-000351",
+      "caption": "a row of novels on a study shelf, viewed from angle 4",
+      "rank": 9,
+      "top_distractor": "a row of novels on a study shelf, viewed from angle 4",
+      "subgroup": "region-eu"
+    }
+  ],
+  "artifacts": {
+    "manifest_id": "manifest-demo600-7cec22bf6fbc",
+    "split_id": "splits-8de1cd4e3773"
+  },
+  "record_sha256": "32a400f6dd5ae4fbb19513041f646aa1738293516bf47e46581d3a0f9028401f"
+}

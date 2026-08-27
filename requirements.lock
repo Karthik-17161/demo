@@ -1,0 +1,21 @@
+# Pinned runtime environment (Python 3.11)
+# Core lab: pure NumPy — no GPU or heavy deps required.
+numpy==1.26.4
+
+# Operator API
+fastapi==0.111.0
+uvicorn[standard]==0.30.1
+pydantic==2.7.4
+
+# Optional real-encoder backend (skipped gracefully when absent)
+# torch==2.3.1
+# open_clip_torch==2.24.0
+
+# Optional GPU energy telemetry (skipped gracefully when absent)
+# pynvml==11.5.0
+
+# Optional faster YAML parsing (mini-parser fallback included)
+PyYAML==6.0.1
+
+# Test runner used by the documented verification command.
+pytest==8.4.1
